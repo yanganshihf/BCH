@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.integration.dao.ChonghaiMapper" >
+  <resultMap id="BaseResultMap" type="com.integration.entity.Chonghai" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="LADING_M" property="ladingM" jdbcType="VARCHAR" />
+    <result column="JI_BIE" property="jiBie" jdbcType="VARCHAR" />
+    <result column="JZZW_MC" property="jzzwMc" jdbcType="VARCHAR" />
+    <result column="JIAN_YI" property="jianYi" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, name, code, LADING_M, JI_BIE, JZZW_MC, JIAN_YI
+  </sql>
+  <select id="getAllReturnMap" resultType="com.integration.entity.Chonghai">
+    select
+     <include refid="Base_Column_List" />
+     from CHONGHAI
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from CHONGHAI
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from CHONGHAI
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.integration.entity.Chonghai" >
+    insert into CHONGHAI (ID, name, code, 
+      LADING_M, JI_BIE, JZZW_MC, 
+      JIAN_YI)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{ladingM,jdbcType=VARCHAR}, #{jiBie,jdbcType=VARCHAR}, #{jzzwMc,jdbcType=VARCHAR}, 
+      #{jianYi,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.integration.entity.Chonghai" >
+    insert into CHONGHAI
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="ladingM != null" >
+        LADING_M,
+      </if>
+      <if test="jiBie != null" >
+        JI_BIE,
+      </if>
+      <if test="jzzwMc != null" >
+        JZZW_MC,
+      </if>
+      <if test="jianYi != null" >
+        JIAN_YI,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="ladingM != null" >
+        #{ladingM,jdbcType=VARCHAR},
+      </if>
+      <if test="jiBie != null" >
+        #{jiBie,jdbcType=VARCHAR},
+      </if>
+      <if test="jzzwMc != null" >
+        #{jzzwMc,jdbcType=VARCHAR},
+      </if>
+      <if test="jianYi != null" >
+        #{jianYi,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.integration.entity.Chonghai" >
+    update CHONGHAI
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="ladingM != null" >
+        LADING_M = #{ladingM,jdbcType=VARCHAR},
+      </if>
+      <if test="jiBie != null" >
+        JI_BIE = #{jiBie,jdbcType=VARCHAR},
+      </if>
+      <if test="jzzwMc != null" >
+        JZZW_MC = #{jzzwMc,jdbcType=VARCHAR},
+      </if>
+      <if test="jianYi != null" >
+        JIAN_YI = #{jianYi,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.integration.entity.Chonghai" >
+    update CHONGHAI
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      LADING_M = #{ladingM,jdbcType=VARCHAR},
+      JI_BIE = #{jiBie,jdbcType=VARCHAR},
+      JZZW_MC = #{jzzwMc,jdbcType=VARCHAR},
+      JIAN_YI = #{jianYi,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

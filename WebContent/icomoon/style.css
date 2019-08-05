@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?1ibv5y');
+  src:  url('fonts/icomoon.eot?1ibv5y#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?1ibv5y') format('truetype'),
+    url('fonts/icomoon.woff?1ibv5y') format('woff'),
+    url('fonts/icomoon.svg?1ibv5y#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-analysis:before {
+  content: "\e900";
+  color: #fff;
+}
+.icon-codeManage:before {
+  content: "\e901";
+  color: #fff;
+}
+.icon-copy:before {
+  content: "\e902";
+  color: #067862;
+}
+.icon-download:before {
+  content: "\e903";
+  color: #067862;
+}
+.icon-lock:before {
+  content: "\e904";
+  color: #6e6e6e;
+}
+.icon-messageManage:before {
+  content: "\e905";
+  color: #fff;
+}
+.icon-patrolManage:before {
+  content: "\e906";
+  color: #fff;
+}
+.icon-pestControl:before {
+  content: "\e907";
+  color: #fff;
+}
+.icon-play:before {
+  content: "\e908";
+  color: #067862;
+}
+.icon-systemManage:before {
+  content: "\e909";
+  color: #fff;
+}
+.icon-unlock:before {
+  content: "\e90a";
+  color: #6e6e6e;
+}
+.icon-videoLive:before {
+  content: "\e90b";
+}

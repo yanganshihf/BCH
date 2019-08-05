@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.integration.dao.YhswxcBzdMapper" >
+  <resultMap id="BaseResultMap" type="com.integration.entity.YhswxcBzd" >
+    <result column="UUID_BZD" property="uuidBzd" jdbcType="VARCHAR" />
+    <result column="SHENG" property="sheng" jdbcType="VARCHAR" />
+    <result column="SHI" property="shi" jdbcType="VARCHAR" />
+    <result column="XIAN" property="xian" jdbcType="VARCHAR" />
+    <result column="XIAN_MC" property="xianMc" jdbcType="VARCHAR" />
+    <result column="XIANG" property="xiang" jdbcType="VARCHAR" />
+    <result column="XIANG_MC" property="xiangMc" jdbcType="VARCHAR" />
+    <result column="CUN" property="cun" jdbcType="VARCHAR" />
+    <result column="XIAO_BAN" property="xiaoBan" jdbcType="VARCHAR" />
+    <result column="YANGDI_H" property="yangdiH" jdbcType="VARCHAR" />
+    <result column="DCSJ_FQ" property="dcsjFq" jdbcType="DATE" />
+    <result column="DCSJ_FH" property="dcsjFh" jdbcType="DATE" />
+    <result column="YANGDI_JD" property="yangdiJd" jdbcType="VARCHAR" />
+    <result column="YANGDI_WD" property="yangdiWd" jdbcType="VARCHAR" />
+    <result column="YHSW_LB" property="yhswLb" jdbcType="VARCHAR" />
+    <result column="YHSW_MC" property="yhswMc" jdbcType="VARCHAR" />
+    <result column="YANGDI_MJ" property="yangdiMj" jdbcType="REAL" />
+    <result column="YANGF_SL" property="yangfSl" jdbcType="INTEGER" />
+    <result column="YANGDI_BZ" property="yangdiBz" jdbcType="VARCHAR" />
+    <result column="DIAOCHA_RY" property="diaochaRy" jdbcType="VARCHAR" />
+    <result column="LAST_CHANGETIME" property="lastChangetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.integration.entity.YhswxcBzd" >
+    insert into YHSWXC_BZD (UUID_BZD, SHENG, SHI, 
+      XIAN, XIAN_MC, XIANG, 
+      XIANG_MC, CUN, XIAO_BAN, 
+      YANGDI_H, DCSJ_FQ, DCSJ_FH, 
+      YANGDI_JD, YANGDI_WD, YHSW_LB, 
+      YHSW_MC, YANGDI_MJ, YANGF_SL, 
+      YANGDI_BZ, DIAOCHA_RY, LAST_CHANGETIME
+      )
+    values (#{uuidBzd,jdbcType=VARCHAR}, #{sheng,jdbcType=VARCHAR}, #{shi,jdbcType=VARCHAR}, 
+      #{xian,jdbcType=VARCHAR}, #{xianMc,jdbcType=VARCHAR}, #{xiang,jdbcType=VARCHAR}, 
+      #{xiangMc,jdbcType=VARCHAR}, #{cun,jdbcType=VARCHAR}, #{xiaoBan,jdbcType=VARCHAR}, 
+      #{yangdiH,jdbcType=VARCHAR}, #{dcsjFq,jdbcType=DATE}, #{dcsjFh,jdbcType=DATE}, 
+      #{yangdiJd,jdbcType=VARCHAR}, #{yangdiWd,jdbcType=VARCHAR}, #{yhswLb,jdbcType=VARCHAR}, 
+      #{yhswMc,jdbcType=VARCHAR}, #{yangdiMj,jdbcType=REAL}, #{yangfSl,jdbcType=INTEGER}, 
+      #{yangdiBz,jdbcType=VARCHAR}, #{diaochaRy,jdbcType=VARCHAR}, #{lastChangetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.integration.entity.YhswxcBzd" >
+    insert into YHSWXC_BZD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuidBzd != null" >
+        UUID_BZD,
+      </if>
+      <if test="sheng != null" >
+        SHENG,
+      </if>
+      <if test="shi != null" >
+        SHI,
+      </if>
+      <if test="xian != null" >
+        XIAN,
+      </if>
+      <if test="xianMc != null" >
+        XIAN_MC,
+      </if>
+      <if test="xiang != null" >
+        XIANG,
+      </if>
+      <if test="xiangMc != null" >
+        XIANG_MC,
+      </if>
+      <if test="cun != null" >
+        CUN,
+      </if>
+      <if test="xiaoBan != null" >
+        XIAO_BAN,
+      </if>
+      <if test="yangdiH != null" >
+        YANGDI_H,
+      </if>
+      <if test="dcsjFq != null" >
+        DCSJ_FQ,
+      </if>
+      <if test="dcsjFh != null" >
+        DCSJ_FH,
+      </if>
+      <if test="yangdiJd != null" >
+        YANGDI_JD,
+      </if>
+      <if test="yangdiWd != null" >
+        YANGDI_WD,
+      </if>
+      <if test="yhswLb != null" >
+        YHSW_LB,
+      </if>
+      <if test="yhswMc != null" >
+        YHSW_MC,
+      </if>
+      <if test="yangdiMj != null" >
+        YANGDI_MJ,
+      </if>
+      <if test="yangfSl != null" >
+        YANGF_SL,
+      </if>
+      <if test="yangdiBz != null" >
+        YANGDI_BZ,
+      </if>
+      <if test="diaochaRy != null" >
+        DIAOCHA_RY,
+      </if>
+      <if test="lastChangetime != null" >
+        LAST_CHANGETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuidBzd != null" >
+        #{uuidBzd,jdbcType=VARCHAR},
+      </if>
+      <if test="sheng != null" >
+        #{sheng,jdbcType=VARCHAR},
+      </if>
+      <if test="shi != null" >
+        #{shi,jdbcType=VARCHAR},
+      </if>
+      <if test="xian != null" >
+        #{xian,jdbcType=VARCHAR},
+      </if>
+      <if test="xianMc != null" >
+        #{xianMc,jdbcType=VARCHAR},
+      </if>
+      <if test="xiang != null" >
+        #{xiang,jdbcType=VARCHAR},
+      </if>
+      <if test="xiangMc != null" >
+        #{xiangMc,jdbcType=VARCHAR},
+      </if>
+      <if test="cun != null" >
+        #{cun,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoBan != null" >
+        #{xiaoBan,jdbcType=VARCHAR},
+      </if>
+      <if test="yangdiH != null" >
+        #{yangdiH,jdbcType=VARCHAR},
+      </if>
+      <if test="dcsjFq != null" >
+        #{dcsjFq,jdbcType=DATE},
+      </if>
+      <if test="dcsjFh != null" >
+        #{dcsjFh,jdbcType=DATE},
+      </if>
+      <if test="yangdiJd != null" >
+        #{yangdiJd,jdbcType=VARCHAR},
+      </if>
+      <if test="yangdiWd != null" >
+        #{yangdiWd,jdbcType=VARCHAR},
+      </if>
+      <if test="yhswLb != null" >
+        #{yhswLb,jdbcType=VARCHAR},
+      </if>
+      <if test="yhswMc != null" >
+        #{yhswMc,jdbcType=VARCHAR},
+      </if>
+      <if test="yangdiMj != null" >
+        #{yangdiMj,jdbcType=REAL},
+      </if>
+      <if test="yangfSl != null" >
+        #{yangfSl,jdbcType=INTEGER},
+      </if>
+      <if test="yangdiBz != null" >
+        #{yangdiBz,jdbcType=VARCHAR},
+      </if>
+      <if test="diaochaRy != null" >
+        #{diaochaRy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastChangetime != null" >
+        #{lastChangetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

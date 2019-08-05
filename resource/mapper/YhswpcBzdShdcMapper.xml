@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.integration.dao.YhswpcBzdShdcMapper" >
+  <resultMap id="BaseResultMap" type="com.integration.entity.YhswpcBzdShdc" >
+    <result column="UUID" property="uuid" jdbcType="VARCHAR" />
+    <result column="UUID_YX" property="uuidYx" jdbcType="VARCHAR" />
+    <result column="UUID_TCD" property="uuidTcd" jdbcType="VARCHAR" />
+    <result column="UUID_BZD" property="uuidBzd" jdbcType="VARCHAR" />
+    <result column="BZD_BH" property="bzdBh" jdbcType="VARCHAR" />
+    <result column="YANGF_XH" property="yangfXh" jdbcType="INTEGER" />
+    <result column="TUQIU_GS" property="tuqiuGs" jdbcType="INTEGER" />
+    <result column="YOUXIAO_DK" property="youxiaoDk" jdbcType="INTEGER" />
+    <result column="BUSHUJIA_S" property="bushujiaS" jdbcType="INTEGER" />
+    <result column="BUSHU_HJ" property="bushuHj" jdbcType="INTEGER" />
+    <result column="BUSHU_C" property="bushuC" jdbcType="INTEGER" />
+    <result column="BUSHU_X" property="bushuX" jdbcType="INTEGER" />
+    <result column="TUQIU_XS" property="tuqiuXs" jdbcType="INTEGER" />
+    <result column="SHU_MI_DU" property="shuMiDu" jdbcType="INTEGER" />
+    <result column="DIAOCHA_ZS" property="diaochaZs" jdbcType="INTEGER" />
+    <result column="SHOUHAI_ZS" property="shouhaiZs" jdbcType="INTEGER" />
+    <result column="SHOUHAI_ZL" property="shouhaiZl" jdbcType="INTEGER" />
+    <result column="SIWANG_ZS" property="siwangZs" jdbcType="INTEGER" />
+    <result column="SIWANG_ZL" property="siwangZl" jdbcType="INTEGER" />
+    <result column="WEIHAI_CD" property="weihaiCd" jdbcType="VARCHAR" />
+    <result column="BEIZHU" property="beizhu" jdbcType="VARCHAR" />
+    <result column="LAST_CHANGETIME" property="lastChangetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.integration.entity.YhswpcBzdShdc" >
+    insert into YHSWPC_BZD_SHDC (UUID, UUID_YX, UUID_TCD, 
+      UUID_BZD, BZD_BH, YANGF_XH, 
+      TUQIU_GS, YOUXIAO_DK, BUSHUJIA_S, 
+      BUSHU_HJ, BUSHU_C, BUSHU_X, 
+      TUQIU_XS, SHU_MI_DU, DIAOCHA_ZS, 
+      SHOUHAI_ZS, SHOUHAI_ZL, SIWANG_ZS, 
+      SIWANG_ZL, WEIHAI_CD, BEIZHU, 
+      LAST_CHANGETIME)
+    values (#{uuid,jdbcType=VARCHAR}, #{uuidYx,jdbcType=VARCHAR}, #{uuidTcd,jdbcType=VARCHAR}, 
+      #{uuidBzd,jdbcType=VARCHAR}, #{bzdBh,jdbcType=VARCHAR}, #{yangfXh,jdbcType=INTEGER}, 
+      #{tuqiuGs,jdbcType=INTEGER}, #{youxiaoDk,jdbcType=INTEGER}, #{bushujiaS,jdbcType=INTEGER}, 
+      #{bushuHj,jdbcType=INTEGER}, #{bushuC,jdbcType=INTEGER}, #{bushuX,jdbcType=INTEGER}, 
+      #{tuqiuXs,jdbcType=INTEGER}, #{shuMiDu,jdbcType=INTEGER}, #{diaochaZs,jdbcType=INTEGER}, 
+      #{shouhaiZs,jdbcType=INTEGER}, #{shouhaiZl,jdbcType=INTEGER}, #{siwangZs,jdbcType=INTEGER}, 
+      #{siwangZl,jdbcType=INTEGER}, #{weihaiCd,jdbcType=VARCHAR}, #{beizhu,jdbcType=VARCHAR}, 
+      #{lastChangetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.integration.entity.YhswpcBzdShdc" >
+    insert into YHSWPC_BZD_SHDC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        UUID,
+      </if>
+      <if test="uuidYx != null" >
+        UUID_YX,
+      </if>
+      <if test="uuidTcd != null" >
+        UUID_TCD,
+      </if>
+      <if test="uuidBzd != null" >
+        UUID_BZD,
+      </if>
+      <if test="bzdBh != null" >
+        BZD_BH,
+      </if>
+      <if test="yangfXh != null" >
+        YANGF_XH,
+      </if>
+      <if test="tuqiuGs != null" >
+        TUQIU_GS,
+      </if>
+      <if test="youxiaoDk != null" >
+        YOUXIAO_DK,
+      </if>
+      <if test="bushujiaS != null" >
+        BUSHUJIA_S,
+      </if>
+      <if test="bushuHj != null" >
+        BUSHU_HJ,
+      </if>
+      <if test="bushuC != null" >
+        BUSHU_C,
+      </if>
+      <if test="bushuX != null" >
+        BUSHU_X,
+      </if>
+      <if test="tuqiuXs != null" >
+        TUQIU_XS,
+      </if>
+      <if test="shuMiDu != null" >
+        SHU_MI_DU,
+      </if>
+      <if test="diaochaZs != null" >
+        DIAOCHA_ZS,
+      </if>
+      <if test="shouhaiZs != null" >
+        SHOUHAI_ZS,
+      </if>
+      <if test="shouhaiZl != null" >
+        SHOUHAI_ZL,
+      </if>
+      <if test="siwangZs != null" >
+        SIWANG_ZS,
+      </if>
+      <if test="siwangZl != null" >
+        SIWANG_ZL,
+      </if>
+      <if test="weihaiCd != null" >
+        WEIHAI_CD,
+      </if>
+      <if test="beizhu != null" >
+        BEIZHU,
+      </if>
+      <if test="lastChangetime != null" >
+        LAST_CHANGETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="uuidYx != null" >
+        #{uuidYx,jdbcType=VARCHAR},
+      </if>
+      <if test="uuidTcd != null" >
+        #{uuidTcd,jdbcType=VARCHAR},
+      </if>
+      <if test="uuidBzd != null" >
+        #{uuidBzd,jdbcType=VARCHAR},
+      </if>
+      <if test="bzdBh != null" >
+        #{bzdBh,jdbcType=VARCHAR},
+      </if>
+      <if test="yangfXh != null" >
+        #{yangfXh,jdbcType=INTEGER},
+      </if>
+      <if test="tuqiuGs != null" >
+        #{tuqiuGs,jdbcType=INTEGER},
+      </if>
+      <if test="youxiaoDk != null" >
+        #{youxiaoDk,jdbcType=INTEGER},
+      </if>
+      <if test="bushujiaS != null" >
+        #{bushujiaS,jdbcType=INTEGER},
+      </if>
+      <if test="bushuHj != null" >
+        #{bushuHj,jdbcType=INTEGER},
+      </if>
+      <if test="bushuC != null" >
+        #{bushuC,jdbcType=INTEGER},
+      </if>
+      <if test="bushuX != null" >
+        #{bushuX,jdbcType=INTEGER},
+      </if>
+      <if test="tuqiuXs != null" >
+        #{tuqiuXs,jdbcType=INTEGER},
+      </if>
+      <if test="shuMiDu != null" >
+        #{shuMiDu,jdbcType=INTEGER},
+      </if>
+      <if test="diaochaZs != null" >
+        #{diaochaZs,jdbcType=INTEGER},
+      </if>
+      <if test="shouhaiZs != null" >
+        #{shouhaiZs,jdbcType=INTEGER},
+      </if>
+      <if test="shouhaiZl != null" >
+        #{shouhaiZl,jdbcType=INTEGER},
+      </if>
+      <if test="siwangZs != null" >
+        #{siwangZs,jdbcType=INTEGER},
+      </if>
+      <if test="siwangZl != null" >
+        #{siwangZl,jdbcType=INTEGER},
+      </if>
+      <if test="weihaiCd != null" >
+        #{weihaiCd,jdbcType=VARCHAR},
+      </if>
+      <if test="beizhu != null" >
+        #{beizhu,jdbcType=VARCHAR},
+      </if>
+      <if test="lastChangetime != null" >
+        #{lastChangetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

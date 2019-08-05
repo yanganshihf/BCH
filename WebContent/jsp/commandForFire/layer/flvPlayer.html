@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="IE=edge" >
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+<title>flvPlayer</title>
+<link rel="stylesheet" href="../../../js/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+<style type="text/css">
+body{
+	background-color: #000000;
+	margin:0px;
+}
+.pause{
+	left:45%;
+	bottom:45%;
+}
+.esri-ui-corner .esri-component {
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.3);
+}
+</style>
+<script type="text/javascript" src="../../../js/moment.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../../js/jquery-2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="../../../js/ckplayer/ckplayer/ckplayer.js" charset="UTF-8"></script>
+</head>
+<body>
+<div class="prism-player" id="playerId" style="width:100%;height:570px;"></div> 
+<script>
+var videoObject = {
+	playerID:'ckplayer01',
+	container: '#playerId', //容器的ID或className
+	variable: 'player', //播放函数名称
+	loaded: 'loadedHandler',
+	autoplay: true,//是否自动播放
+	video:parent.$("#recordFile").val()
+};
+var player = new ckplayer(videoObject);
+function loadedHandler() {
+	player.addListener('time', timeHandler); //监听播放时间
+}
+function timeHandler(time) {
+	if(timeHandlerFun!=null){
+		timeHandlerFun(time);
+	}
+}
+var timeHandlerFun=null;
+$(window).resize(function(){
+	$("#playerId").css("height",$(window).height()-4);
+});
+$(document).ready(function() {
+	$("#playerId").css("height",$(window).height()-4);
+  	var file = parent.$("#recordFile").val();
+  	var recordCode = parent.$("#recordCode").val();
+  	var recordStart = parent.$("#recordStart").val();
+  	var recordEnd = parent.$("#recordEnd").val();
+  	$.post("/ResourceMonitor/record/queryTrailByCode",
+	  {
+	    code:recordCode,
+	    start:recordStart,
+	    end:recordEnd
+	  },
+	  function(data,status){
+		  if(data.code==0){
+			  var trailStr = data.data;
+			  var trails =trailStr.split(';');
+		  	  var paths=[];
+			  var trailAttrs={};
+			  var startTime = timestampToTime(parseInt(recordStart));
+			  var endTime = timestampToTime(parseInt(recordEnd));
+		  	  var trailStart='';
+			  var trailEnd='';
+   			  for(var i=0;i<(trails.length-1);i++){
+				var lon = trails[i].split('-')[0];
+				var lat = trails[i].split('-')[1];
+				var alt = trails[i].split('-')[2];
+				var angle = trails[i].split('-')[3];
+				var time = trails[i].split('-')[4];
+	        	if(trails[i].split('-').length==6){
+ 					 angle = trails[i].split('-')[4];
+ 					 time = trails[i].split('-')[5];
+ 				}
+	        
+  				if(i==0){
+  					trailStart=[lon,lat,alt,angle,time];
+  				}else if(i==trails.length-2){
+  					trailEnd=[lon,lat,alt,angle,time];
+  				}
+				if(time>=startTime&&time<=endTime){
+					paths.push([lon,lat]);
+					trailAttrs[time]=[lon,lat,alt,angle,time];
+				}
+			  } 
+			  parent.addTrail(paths,1);
+			  timeHandlerFun = function (time){
+  				var time = time.toFixed(0);
+				var trailAttr = null;
+				var time1 = moment(parseInt(recordStart)).format("YYYYMMDDHHmmss");
+				time = moment(parseInt(recordStart)+time*1000).format("YYYYMMDDHHmmss");
+				if(time<trailStart[4]){
+					trailAttr=trailStart;
+				}else if(time>trailEnd[4]){
+					trailAttr=trailEnd;
+				}else{
+					trailAttr = trailAttrs[time];
+				}
+				if(trailAttr== undefined){
+					return;
+				}
+				var lon = parseFloat(trailAttr[0]);
+				var lat = parseFloat(trailAttr[1]);
+                var alt = parseFloat(trailAttr[2]);
+                var angle = parseFloat(trailAttr[3]);
+			    if(trailAttr.length==6){
+					 angle = -parseFloat(trailAttr[4]);
+				}
+                var dms = toDMS({x:lon,y:lat});
+                parent.addPosition(lon,lat,0);
+ 			};   
+		  }
+  	}); 	    	 
+});
+//时间戳转时间
+function timestampToTime(timestamp) {
+    return moment(timestamp).format("YYYYMMDDHHmmss"); 
+}
+//全屏
+function fullScreen(){
+    var el = document.documentElement;
+    var rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;      
+    if(typeof rfs != "undefined" && rfs) {
+        rfs.call(el);
+    };
+    return;
+}
+//退出全屏
+function exitScreen(){
+    if (document.exitFullscreen) {  
+        document.exitFullscreen();  
+    }  
+    else if (document.mozCancelFullScreen) {  
+        document.mozCancelFullScreen();  
+    }  
+    else if (document.webkitCancelFullScreen) {  
+        document.webkitCancelFullScreen();  
+    }  
+    else if (document.msExitFullscreen) {  
+        document.msExitFullscreen();  
+    } 
+    if(typeof cfs != "undefined" && cfs) {
+        cfs.call(el);
+    }
+}
+function toDMS(lonlat){
+    var longtD = parseInt(lonlat.x);
+    var latD = parseInt(lonlat.y);
+    var longtM = parseInt((lonlat.x - longtD) * 60);
+    var latM = parseInt((lonlat.y - latD) * 60);
+    var longtS = parseFloat(((lonlat.x - longtD) * 60 - longtM) * 60);
+    var latS = parseFloat(((lonlat.y - latD) * 60 - latM) * 60);
+    return{
+    	x:longtD+"°"+longtM+"′"+longtS.toFixed(2)+"″",
+    	y:latD+"°"+latM+"′"+latS.toFixed(2)+"″"
+    }
+}
+</script>
+</body>

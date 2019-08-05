@@ -1,0 +1,357 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?igtrhr');
+  src:  url('fonts/icomoon.eot?igtrhr#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?igtrhr') format('truetype'),
+    url('fonts/icomoon.woff?igtrhr') format('woff'),
+    url('fonts/icomoon.svg?igtrhr#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-qing:before {
+  content: "\e959";
+}
+.icon-rain:before {
+  content: "\e95a";
+}
+.icon-snow:before {
+  content: "\e95b";
+}
+.icon-airplane:before {
+  content: "\e900";
+  color: #6e6e6e;
+}
+.icon-airplane2:before {
+  content: "\e901";
+  color: #fff;
+}
+.icon-analysis:before {
+  content: "\e902";
+  color: #fff;
+}
+.icon-analysisExpand:before {
+  content: "\e903";
+  color: #6e6e6e;
+}
+.icon-analysisExpand2:before {
+  content: "\e904";
+  color: #fff;
+}
+.icon-area:before {
+  content: "\e905";
+  /* color: #6e6e6e; */
+}
+.icon-area2:before {
+  content: "\e906";
+  /* color: #0062ac; */
+}
+.icon-atmosphere_high:before {
+  content: "\e907";
+  color: #6e6e6e;
+}
+.icon-atmosphere_low:before {
+  content: "\e908";
+  color: #6e6e6e;
+}
+.icon-attendance:before {
+  content: "\e909";
+}
+.icon-buffer:before {
+  content: "\e90a";
+}
+.icon-camera:before {
+  content: "\e90b";
+  color: #6e6e6e;
+}
+.icon-camera2:before {
+  content: "\e90c";
+  color: #eee;
+}
+.icon-cell-expand:before {
+  content: "\e90d";
+  color: #505151;
+}
+.icon-cell-selected:before {
+  content: "\e90e";
+  color: #0b7d5d;
+}
+.icon-cell-unexpand:before {
+  content: "\e90f";
+  color: #505151;
+}
+.icon-cell-unselected:before {
+  content: "\e910";
+  color: #505151;
+}
+.icon-clock:before {
+  content: "\e911";
+  color: #6e6e6e;
+}
+.icon-clostestFacility:before {
+  content: "\e912";
+}
+.icon-codeManage:before {
+  content: "\e913";
+  color: #fff;
+}
+.icon-copy:before {
+  content: "\e914";
+  color: #067862;
+}
+.icon-disval:before {
+  content: "\e915";
+}
+.icon-download:before {
+  content: "\e916";
+  color: #067862;
+}
+.icon-drawArea:before {
+  content: "\e917";
+  color: #6e6e6e;
+}
+.icon-earth:before {
+  content: "\e918";
+  color: #6e6e6e;
+}
+.icon-eventDraw:before {
+  content: "\e919";
+}
+.icon-eventmanage:before {
+  content: "\e91a";
+}
+.icon-fireComputed:before {
+  content: "\e91b";
+}
+.icon-flag:before {
+  content: "\e91c";
+  /* color: #0062ac; */
+}
+.icon-flag2:before {
+  content: "\e91d";
+  color: #6e6e6e;
+}
+.icon-Flight:before {
+  content: "\e91e";
+  /* color: #6e6e6e; */
+}
+.icon-Flight2:before {
+  content: "\e91f";
+  color: #fff;
+}
+.icon-guijiReplay:before {
+  content: "\e920";
+  color: #6e6e6e;
+}
+.icon-guijiReplay2:before {
+  content: "\e921";
+  color: #fff;
+}
+.icon-i360:before {
+  content: "\e922";
+}
+.icon-identify1:before {
+  content: "\e923";
+  color: #0062ac;
+}
+.icon-identify2:before {
+  content: "\e924";
+  /* color: #6e6e6e; */
+}
+.icon-information:before {
+  content: "\e925";
+}
+.icon-information2:before {
+  content: "\e926";
+  color: #0d745f;
+}
+.icon-laws:before {
+  content: "\e927";
+}
+.icon-length:before {
+  content: "\e928";
+  /* color: #6e6e6e; */
+}
+.icon-length2:before {
+  content: "\e929";
+  color: #0062ac;
+}
+.icon-location:before {
+  content: "\e92a";
+  color: #6e6e6e;
+}
+.icon-lock:before {
+  content: "\e92b";
+  color: #6e6e6e;
+}
+.icon-logmanage:before {
+  content: "\e92c";
+}
+.icon-lossComputed:before {
+  content: "\e92d";
+}
+.icon-mapExport:before {
+  content: "\e92e";
+  color: #6e6e6e;
+}
+.icon-messageManage:before {
+  content: "\e92f";
+  color: #fff;
+}
+.icon-moon:before {
+  content: "\e930";
+  color: #6e6e6e;
+}
+.icon-North:before {
+  content: "\e931";
+  color: #6e6e6e;
+}
+.icon-northImg:before {
+  content: "\e932";
+}
+.icon-notice:before {
+  content: "\e933";
+}
+.icon-patrolManage:before {
+  content: "\e934";
+  color: #fff;
+}
+.icon-people:before {
+  content: "\e935";
+  color: #707070;
+}
+.icon-people2:before {
+  content: "\e936";
+  color: #eee;
+}
+.icon-personmanage:before {
+  content: "\e937";
+}
+.icon-pestControl:before {
+  content: "\e938";
+  color: #fff;
+}
+.icon-play:before {
+  content: "\e939";
+  color: #067862;
+}
+.icon-privatemessage:before {
+  content: "\e93a";
+}
+.icon-queryAttr:before {
+  content: "\e93b";
+  color: #6e6e6e;
+}
+.icon-queryAttr1:before {
+  content: "\e93c";
+  color: #0062ac;
+}
+.icon-realtime:before {
+  content: "\e93d";
+}
+.icon-refresh:before {
+  content: "\e93e";
+  color: #6e6e6e;
+}
+.icon-region:before {
+  content: "\e93f";
+}
+.icon-route:before {
+  content: "\e940";
+}
+.icon-separator:before {
+  content: "\e941";
+}
+.icon-shiMonitor:before {
+  content: "\e942";
+  color: #6e6e6e;
+}
+.icon-shiMonitor2:before {
+  content: "\e943";
+  color: #fff;
+}
+.icon-shouye:before {
+  content: "\e944";
+}
+.icon-sos:before {
+  content: "\e945";
+}
+.icon-sourceSurvey:before {
+  content: "\e946";
+}
+.icon-spread:before {
+  content: "\e947";
+}
+.icon-ssjg:before {
+  content: "\e948";
+}
+.icon-sunshine:before {
+  content: "\e949";
+  color: #6e6e6e;
+}
+.icon-switch2d:before {
+  content: "\e94a";
+  color: #6e6e6e;
+}
+.icon-switch3d:before {
+  content: "\e94b";
+  color: #6e6e6e;
+}
+.icon-systemManage:before {
+  content: "\e94c";
+  color: #fff;
+}
+.icon-tianqi:before {
+  content: "\e94d";
+}
+.icon-tongshi:before {
+  content: "\e94e";
+}
+.icon-trackback:before {
+  content: "\e94f";
+}
+.icon-treeExpand:before {
+  content: "\e950";
+}
+.icon-unlock:before {
+  content: "\e951";
+  color: #6e6e6e;
+}
+.icon-uploadShp:before {
+  content: "\e952";
+  color: #595757;
+}
+.icon-uploadXY:before {
+  content: "\e953";
+  color: #595757;
+}
+.icon-videoLive:before {
+  content: "\e954";
+}
+.icon-viewshed:before {
+  content: "\e955";
+}
+.icon-znfx:before {
+  content: "\e956";
+}
+.icon-ztsj:before {
+  content: "\e957";
+}
+.icon-zyxz:before {
+  content: "\e958";
+}

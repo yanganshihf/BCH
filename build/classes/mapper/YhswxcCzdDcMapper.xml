@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.integration.dao.YhswxcCzdDcMapper" >
+  <resultMap id="BaseResultMap" type="com.integration.entity.YhswxcCzdDc" >
+    <result column="UUID" property="uuid" jdbcType="VARCHAR" />
+    <result column="UUID_CZD" property="uuidCzd" jdbcType="VARCHAR" />
+    <result column="YANGDI_H" property="yangdiH" jdbcType="VARCHAR" />
+    <result column="DIAOCHA_ZS" property="diaochaZs" jdbcType="INTEGER" />
+    <result column="YHSW_LB" property="yhswLb" jdbcType="VARCHAR" />
+    <result column="YHSW_MC" property="yhswMc" jdbcType="VARCHAR" />
+    <result column="JZZW_MC" property="jzzwMc" jdbcType="VARCHAR" />
+    <result column="WEIHAI_BW" property="weihaiBw" jdbcType="VARCHAR" />
+    <result column="WEIHAI_Q" property="weihaiQ" jdbcType="VARCHAR" />
+    <result column="SHOUHAI_ZL" property="shouhaiZl" jdbcType="INTEGER" />
+    <result column="SIWANG_ZL" property="siwangZl" jdbcType="INTEGER" />
+    <result column="CHENGZAI" property="chengzai" jdbcType="VARCHAR" />
+    <result column="LAST_CHANGETIME" property="lastChangetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.integration.entity.YhswxcCzdDc" >
+    insert into YHSWXC_CZD_DC (UUID, UUID_CZD, YANGDI_H, 
+      DIAOCHA_ZS, YHSW_LB, YHSW_MC, 
+      JZZW_MC, WEIHAI_BW, WEIHAI_Q, 
+      SHOUHAI_ZL, SIWANG_ZL, CHENGZAI, 
+      LAST_CHANGETIME)
+    values (#{uuid,jdbcType=VARCHAR}, #{uuidCzd,jdbcType=VARCHAR}, #{yangdiH,jdbcType=VARCHAR}, 
+      #{diaochaZs,jdbcType=INTEGER}, #{yhswLb,jdbcType=VARCHAR}, #{yhswMc,jdbcType=VARCHAR}, 
+      #{jzzwMc,jdbcType=VARCHAR}, #{weihaiBw,jdbcType=VARCHAR}, #{weihaiQ,jdbcType=VARCHAR}, 
+      #{shouhaiZl,jdbcType=INTEGER}, #{siwangZl,jdbcType=INTEGER}, #{chengzai,jdbcType=VARCHAR}, 
+      #{lastChangetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.integration.entity.YhswxcCzdDc" >
+    insert into YHSWXC_CZD_DC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        UUID,
+      </if>
+      <if test="uuidCzd != null" >
+        UUID_CZD,
+      </if>
+      <if test="yangdiH != null" >
+        YANGDI_H,
+      </if>
+      <if test="diaochaZs != null" >
+        DIAOCHA_ZS,
+      </if>
+      <if test="yhswLb != null" >
+        YHSW_LB,
+      </if>
+      <if test="yhswMc != null" >
+        YHSW_MC,
+      </if>
+      <if test="jzzwMc != null" >
+        JZZW_MC,
+      </if>
+      <if test="weihaiBw != null" >
+        WEIHAI_BW,
+      </if>
+      <if test="weihaiQ != null" >
+        WEIHAI_Q,
+      </if>
+      <if test="shouhaiZl != null" >
+        SHOUHAI_ZL,
+      </if>
+      <if test="siwangZl != null" >
+        SIWANG_ZL,
+      </if>
+      <if test="chengzai != null" >
+        CHENGZAI,
+      </if>
+      <if test="lastChangetime != null" >
+        LAST_CHANGETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="uuidCzd != null" >
+        #{uuidCzd,jdbcType=VARCHAR},
+      </if>
+      <if test="yangdiH != null" >
+        #{yangdiH,jdbcType=VARCHAR},
+      </if>
+      <if test="diaochaZs != null" >
+        #{diaochaZs,jdbcType=INTEGER},
+      </if>
+      <if test="yhswLb != null" >
+        #{yhswLb,jdbcType=VARCHAR},
+      </if>
+      <if test="yhswMc != null" >
+        #{yhswMc,jdbcType=VARCHAR},
+      </if>
+      <if test="jzzwMc != null" >
+        #{jzzwMc,jdbcType=VARCHAR},
+      </if>
+      <if test="weihaiBw != null" >
+        #{weihaiBw,jdbcType=VARCHAR},
+      </if>
+      <if test="weihaiQ != null" >
+        #{weihaiQ,jdbcType=VARCHAR},
+      </if>
+      <if test="shouhaiZl != null" >
+        #{shouhaiZl,jdbcType=INTEGER},
+      </if>
+      <if test="siwangZl != null" >
+        #{siwangZl,jdbcType=INTEGER},
+      </if>
+      <if test="chengzai != null" >
+        #{chengzai,jdbcType=VARCHAR},
+      </if>
+      <if test="lastChangetime != null" >
+        #{lastChangetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

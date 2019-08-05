@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.integration.dao.YhswpcYzddcMapper" >
+  <resultMap id="BaseResultMap" type="com.integration.entity.YhswpcYzddc" >
+    <result column="UUID" property="uuid" jdbcType="VARCHAR" />
+    <result column="UUID_YCD" property="uuidYcd" jdbcType="VARCHAR" />
+    <result column="KUNCHONG" property="kunchong" jdbcType="VARCHAR" />
+    <result column="SHULIANG_H" property="shuliangH" jdbcType="INTEGER" />
+    <result column="SHULIANG_C" property="shuliangC" jdbcType="INTEGER" />
+    <result column="SHULIANG_X" property="shuliangX" jdbcType="INTEGER" />
+    <result column="BEI_ZHU" property="beiZhu" jdbcType="VARCHAR" />
+    <result column="LAST_CHANGETIME" property="lastChangetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.integration.entity.YhswpcYzddc" >
+    insert into YHSWPC_YZDDC (UUID, UUID_YCD, KUNCHONG, 
+      SHULIANG_H, SHULIANG_C, SHULIANG_X, 
+      BEI_ZHU, LAST_CHANGETIME)
+    values (#{uuid,jdbcType=VARCHAR}, #{uuidYcd,jdbcType=VARCHAR}, #{kunchong,jdbcType=VARCHAR}, 
+      #{shuliangH,jdbcType=INTEGER}, #{shuliangC,jdbcType=INTEGER}, #{shuliangX,jdbcType=INTEGER}, 
+      #{beiZhu,jdbcType=VARCHAR}, #{lastChangetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.integration.entity.YhswpcYzddc" >
+    insert into YHSWPC_YZDDC
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        UUID,
+      </if>
+      <if test="uuidYcd != null" >
+        UUID_YCD,
+      </if>
+      <if test="kunchong != null" >
+        KUNCHONG,
+      </if>
+      <if test="shuliangH != null" >
+        SHULIANG_H,
+      </if>
+      <if test="shuliangC != null" >
+        SHULIANG_C,
+      </if>
+      <if test="shuliangX != null" >
+        SHULIANG_X,
+      </if>
+      <if test="beiZhu != null" >
+        BEI_ZHU,
+      </if>
+      <if test="lastChangetime != null" >
+        LAST_CHANGETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="uuidYcd != null" >
+        #{uuidYcd,jdbcType=VARCHAR},
+      </if>
+      <if test="kunchong != null" >
+        #{kunchong,jdbcType=VARCHAR},
+      </if>
+      <if test="shuliangH != null" >
+        #{shuliangH,jdbcType=INTEGER},
+      </if>
+      <if test="shuliangC != null" >
+        #{shuliangC,jdbcType=INTEGER},
+      </if>
+      <if test="shuliangX != null" >
+        #{shuliangX,jdbcType=INTEGER},
+      </if>
+      <if test="beiZhu != null" >
+        #{beiZhu,jdbcType=VARCHAR},
+      </if>
+      <if test="lastChangetime != null" >
+        #{lastChangetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

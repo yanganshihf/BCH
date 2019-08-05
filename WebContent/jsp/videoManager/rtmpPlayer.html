@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="IE=edge" >
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+<title>rtmpPlayer</title>
+<link rel="stylesheet" href="../../js/arcgis_js_api/library/4.10/esri/css/main.css" />
+<link rel="stylesheet" href="../../icomoon/style.css" />
+<link rel="stylesheet" href="../../js/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+<style type="text/css">
+html{
+	height:100%;
+}
+body{
+	height:100%;
+	background-color: #000000;
+	margin:0px;
+}
+.esri-ui-corner .esri-component {
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.3);
+}
+</style>
+<script type="text/javascript" src="../../js/moment.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="../../js/jquery-2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="../../js/layer/layer-v3.0.3/layer/layer.js"></script>
+<script type="text/javascript" src="../../js/arcgis_js_api/library/4.10/init.js"></script>
+<script type="text/javascript" src="../../js/ckplayer/ckplayer/ckplayer.js" charset="UTF-8"></script>
+</head>
+<body>
+<span class="glyphicon glyphicon-picture" onclick="player.screenshot('player',false,'视频截图')" id="screenshotId" style="font-size:20px;display:none;position:absolute;color:#fff;right:28%;padding-right:40px;top:94%;z-index:90;"></span>
+<div  id="playerId" style="width:75%;height:570px;float:left;"></div> 
+<div id="viewDiv" style="width:25%;height:100%;float:left;border-left: 2px solid #337ab7;" >
+	<div id="initialExtent" style="height:32px;width:32px;padding:6px;"
+		class="esri-widget-button esri-widget esri-interactive" title="锁定">
+		<span class="icon-lock" style="font-size:20px;" id="lockId"></span>
+	</div>	
+	<div id="fullScreen" style="height:32px;width:32px;padding:6px;"
+		class="esri-widget-button esri-widget esri-interactive" title="全屏">
+		<span class="glyphicon glyphicon-resize-full" style="font-size:20px;" id="fullScreenId"></span>
+	</div>	
+	<div id="message" style="display:none;height:100px;width:150px;padding:10px;color:#fff;">
+		<div>经度：<span id="lon">暂无</span></div>
+		<div>纬度：<span id="lat">暂无</span></div>
+		<div>海拔：<span id="alt">暂无</span></div>
+		<div>方位角：<span id="angle">暂无</span></div>
+	</div>	
+</div> 
+
+<script>
+var file = parent.$("#address").val();
+var videoObject = {
+	container: '#playerId', //容器的ID或className
+	variable: 'player',//播放函数名称
+	autoplay:true,
+	live:true,
+	video: file,
+	loaded: 'loadedHandler',
+};
+var player = new ckplayer(videoObject);
+function loadedHandler() {
+	player.addListener('controlBar', controlBarHandler);
+	player.addListener('screenshot', screenshotHandler); //监听截图功能
+	$("#screenshotId").fadeIn(1000);
+}
+function controlBarHandler(show){
+	if(show) {
+		 $("#screenshotId").fadeIn(1000);
+	} else {
+		$("#screenshotId").fadeOut(1000);
+	}
+}
+function screenshotHandler(obj) {
+  var pictureData = obj['base64'];
+  var downloadElement = document.createElement('a');
+  downloadElement.setAttribute('href', pictureData);
+  var fileName = parent.$("#usercode").val()+"-"+moment(Date.now()).format("YYYYMMDDHHmmss") + '.png';
+  downloadElement.setAttribute('download', fileName);
+  downloadElement.click();
+  pictureData = null;
+}
+var map;
+var view;
+var positionLayer,trailLayer;
+$(window).resize(function(){
+	$("#playerId").css("height",$(window).height()-4);
+})
+$(document).ready(function() {
+ 	$("#playerId").css("height",$(window).height()-4);
+	require([ "esri/Map","esri/views/MapView","esri/config","esri/core/urlUtils","esri/layers/WebTileLayer",
+		"esri/layers/support/TileInfo","esri/layers/FeatureLayer","esri/layers/MapImageLayer",
+		"esri/layers/TileLayer","esri/layers/GraphicsLayer","esri/geometry/Point","esri/symbols/PictureMarkerSymbol",
+		"esri/Color","esri/Graphic","esri/request"], 
+		function(Map,MapView,esriConfig,urlUtils,WebTileLayer,
+				TileInfo,FeatureLayer,MapImageLayer,
+				TileLayer,GraphicsLayer,Point,PictureMarkerSymbol,
+				Color,Graphic,esriRequest) {
+/* 		urlUtils.addProxyRule({
+			urlPrefix : "58.18.226.130:6080/arcgis/rest/services",
+			proxyUrl : "http://127.0.0.1:8878/Java/proxy.jsp"
+		}); */
+		//定义瓦片结构  
+       var TintLayer = WebTileLayer.createSubclass({
+           properties : {
+               urlTemplate : null,
+               tint : {
+                   value : null,
+                   type : Color
+               }
+           },
+           getTileUrl : function(level, row, col) {
+               return this.urlTemplate.replace("{z}", level)
+                       .replace("{x}", col)
+                       .replace("{y}", row);
+           },
+           fetchTile : function(level, row, col) {
+               var url = this.getTileUrl(level, row, col);
+               return esriRequest(url, {
+                   responseType : "image",
+                   allowImageDataAccess : true
+               }).then(
+                       function(response) {
+                           // when esri request resolves successfully  
+                           // get the image from the response  
+                           var image = response.data;
+                           var width = this.tileInfo.size[0];
+                           var height = this.tileInfo.size[0];
+                           // create a canvas with 2D rendering context  
+                           var canvas = document.createElement("canvas");
+                           var context = canvas.getContext("2d");
+                           canvas.width = width;
+                           canvas.height = height;
+                           // Draw the blended image onto the canvas.  
+                           context.drawImage(image, 0, 0,width, height);
+
+                           return canvas;
+                       }.bind(this));
+           }
+       });
+	   esriConfig.request.corsEnabledServers.push("http://www.google.cn/");
+	   //esriConfig.request.corsEnabledServers.push("http://khm.google.com/"); 
+	   positionLayer = new GraphicsLayer({
+			opacity : 0.80,
+			listMode:"hide"
+	   });
+	   trailLayer = new GraphicsLayer({
+			opacity : 0.80,
+			listMode:"hide"
+	   });
+      //天地图
+      var tdtLayer = new TintLayer({
+	      urlTemplate : "http://www.google.cn/maps/vt/pb=!1m4!1m3!1i{z}!2i{x}!3i{y}!2m3!1e0!2sm!3i380072576!3m8!2szh-CN!3scn!5e1105!12m4!1e68!2m2!1sset!2sRoadmap!4e0!5m1!1e0'",
+	      title : "Google Map2"
+	  });
+      var ggSatelliteLayer = new TintLayer({
+    	  urlTemplate : localStorage.getItem("ggSatelliteLayer"),
+          title : "Google Map"
+      });
+      //底图标注  
+      var tdtLayerMarker = new TintLayer({
+	      urlTemplate : "http://www.google.cn/maps/vt/lyrs=h@177000000&hl=zh-CN&gl=cn&x={x}&y={y}&z={z}&s=Galil",
+	      title : "Google Map1"
+	  });  
+        map = new Map({
+	    	layers: [ggSatelliteLayer],
+	    	showLabels : true
+        	});
+        view = new MapView({
+        	map: map,
+        	container: "viewDiv", 
+        }); 
+
+        //去除logo
+        view.ui.remove("attribution");
+        view.ui.add("initialExtent", "top-left");
+        view.ui.add("fullScreen", "top-left");
+        view.ui.add("message", "top-right");
+        view.on("mouse-wheel", function(evt){
+        	if($("#initialExtent").attr("title")=='锁定'){
+        		evt.stopPropagation();
+        	}
+       	});
+        view.on("drag",function(event){
+        	if(event.button==2){
+        		event.stopPropagation();
+        	}
+        });
+		map.addMany([trailLayer,positionLayer]);
+		view.when(function(){
+			$("#message").css("display","");
+			var ws = null;
+			var beforePosition = null;//轨迹绘制上一个坐标
+		    var polylineSymbol = {//轨迹绘制符号
+				type: "simple-line",  
+				color: [226, 119, 40],
+				width: 4
+			};
+	        view.goTo({
+	        	  center: [120,50.5],
+	        	  zoom: 18
+	        });
+	        //全屏按钮点击事件
+	        $("#fullScreen").off().on("click",function(){
+	        	if($("#fullScreen").attr("title")=='全屏'){
+        		   	$("#fullScreen").attr("title","退出全屏");
+        		   	$("#fullScreenId").attr("class","glyphicon glyphicon-resize-small");
+        		   	fullScreen();
+	        	}else{
+	        		$("#fullScreen").attr("title","全屏");
+	        		$("#fullScreenId").attr("class","glyphicon glyphicon-resize-full");
+	        		exitScreen();
+	        	}
+	        });
+           var initialExtentButton = document.getElementById("initialExtent");
+           initialExtentButton.addEventListener("click", function() {
+        	   if($("#initialExtent").attr("title")=='锁定'){
+        		   $("#initialExtent").attr("title","解锁");
+        		   $("#lockId").attr("class","icon-unlock");
+        		   ws.onmessage=function(evt){
+    	               var result = evt.data;
+    	               var message = result.split(',');
+    	               moveTo(message,0)
+        		   }
+        	   }else{
+        		   $("#initialExtent").attr("title","锁定");
+        		   $("#lockId").attr("class","icon-lock");
+        		   ws.onmessage=function(evt){
+    	               var result = evt.data;
+    	               var message = result.split(',');
+    	               moveTo(message,1)
+        		   }
+        	   }
+        	   
+           });
+	    	var usercode = parent.$("#usercode").val();
+    	  	$.post("/ResourceMonitor/video/queryTrailByCode",
+  			  {
+  			    code:usercode
+  			  },
+  			  function(data,status){
+   				  var trailStr = data.data;
+  				  var trails =trailStr.split(';');
+  				  var paths=[];
+    			  for(var i=0;i<(trails.length-1);i++){
+  					var lon = trails[i].split('-')[0];
+  					var lat = trails[i].split('-')[1];
+  					paths.push([lon,lat]);
+  				  }  
+            	  var polyline = {
+	       			  type: "polyline", 
+       			      paths: paths
+	       		  };
+		    	  var polylineGraphic = new Graphic({
+	    		     geometry: polyline,   
+	    		     symbol: polylineSymbol,   
+	    		  });
+  				  trailLayer.add(polylineGraphic); 
+  				  beforePosition = paths[paths.length-1];
+  			  });
+	        if ("WebSocket" in window){
+	    	    var d=new Date();
+	    	    var time = '_'+d.getTime();
+	            ws = new WebSocket("ws://60.205.206.180:8080/ResourceMonitor/websocket/"+usercode+time);
+	            //ws = new WebSocket("ws://127.0.0.1:8878/ResourceMonitor/websocket/"+usercode+time);
+	            ws.onopen = function(){
+	            };
+	            ws.onmessage = function (evt){ 
+	               var result = evt.data;
+	               var message = result.split(',');
+	               moveTo(message,1)
+	            };
+	            ws.onclose = function(){ 
+	            };
+	        }
+	        function moveTo(message,move) {
+	               var lon = parseFloat(message[0]);
+	               var lat = parseFloat(message[1]);
+	               var alt = parseFloat(message[2]);
+	               var angle = parseFloat(message[3]);
+	               var dms = toDMS({x:lon,y:lat});
+	               $("#lon").html(dms.x);
+	               $("#lat").html(dms.y);
+	               $("#alt").html(alt.toFixed(0));
+	               $("#angle").html((angle/10).toFixed(1)+"°");
+ 	       			var pt = new Point(lon,lat);
+	       			var symbol = new PictureMarkerSymbol({
+	       				url:"/ResourceMonitor/images/airplane.png",
+	       				//angle:angle/10,
+	       				width:30,
+	       				height:30,
+	       				xoffset:0,
+	       				yoffset:0
+	       			});
+	       			var graphic = new Graphic(pt, symbol);
+	       			positionLayer.removeAll();
+	       			positionLayer.add(graphic);
+	       			//绘制轨迹
+            	    var polyline = {
+   	       			    type: "polyline", 
+          			    paths: [beforePosition,[lon,lat]]
+   	       		    };
+   		    	    var polylineGraphic = new Graphic({
+   	    		       geometry: polyline,   
+   	    		       symbol: polylineSymbol,   
+   	    		    });
+   		    	 	beforePosition=[lon,lat];
+     				trailLayer.add(polylineGraphic); 	       			
+	       			if(move==1){
+		    	        view.goTo({
+		  	        	  center: [lon,lat],
+		  	        	  zoom: 18
+		  	            });
+	       			}
+	        }
+		}, function(error){
+		});
+	});	
+});
+//全屏
+function fullScreen(){
+    var el = document.documentElement;
+    var rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;      
+        if(typeof rfs != "undefined" && rfs) {
+            rfs.call(el);
+        };
+      return;
+}
+//退出全屏
+function exitScreen(){
+    if (document.exitFullscreen) {  
+        document.exitFullscreen();  
+    }  
+    else if (document.mozCancelFullScreen) {  
+        document.mozCancelFullScreen();  
+    }  
+    else if (document.webkitCancelFullScreen) {  
+        document.webkitCancelFullScreen();  
+    }  
+    else if (document.msExitFullscreen) {  
+        document.msExitFullscreen();  
+    } 
+    if(typeof cfs != "undefined" && cfs) {
+        cfs.call(el);
+    }
+}
+function toDMS(lonlat){
+    var longtD = parseInt(lonlat.x);
+    var latD = parseInt(lonlat.y);
+    var longtM = parseInt((lonlat.x - longtD) * 60);
+    var latM = parseInt((lonlat.y - latD) * 60);
+    var longtS = parseFloat(((lonlat.x - longtD) * 60 - longtM) * 60);
+    var latS = parseFloat(((lonlat.y - latD) * 60 - latM) * 60);
+    return{
+    	x:longtD+"°"+longtM+"′"+longtS.toFixed(2)+"″",
+    	y:latD+"°"+latM+"′"+latS.toFixed(2)+"″"
+    }
+}
+</script>
+</body>

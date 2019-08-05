@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="IE=edge" >
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+<title>rtmpPlayer</title>
+<link rel="stylesheet" href="../../../icomoon/style.css" />
+<link rel="stylesheet" href="../../../js/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+<style type="text/css">
+body{
+	background-color: #000000;
+	margin:0px;
+}
+.esri-ui-corner .esri-component {
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.3);
+}
+</style>
+<script type="text/javascript" charset="utf-8" src="../../../js/jquery-2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="../../../js/layer/layer-v3.0.3/layer/layer.js"></script>
+<script type="text/javascript" src="../../../js/ckplayer/ckplayer/ckplayer.js" charset="UTF-8"></script>
+</head>
+<body>
+<div class="prism-player" id="playerId" style="width:100%;"></div> 
+<script>
+var moveTo=null;
+var ws = null;
+$(window).resize(function () {  
+	$("#playerId").css("height",$(window).height()-4);
+});
+$(document).ready(function() {
+ 	$("#playerId").css("height",$(window).height()-4);
+	var file = parent.$("#address").val();
+	var videoObject = {
+		container: '#playerId', //容器的ID或className
+		variable: 'player',//播放函数名称
+		autoplay:true,
+		live:true,
+		video: file
+	};
+	var player = new ckplayer(videoObject);
+	var beforePosition = null;//轨迹绘制上一个坐标
+	var usercode = parent.$("#usercode").val();
+  	$.post("/ResourceMonitor/video/queryTrailByCode",
+	{
+	   code:usercode
+	},
+	function(data,status){
+		var trailStr = data.data;
+		var trails =trailStr.split(';');
+		var paths=[];
+		for(var i=0;i<(trails.length-1);i++){
+			var lon = trails[i].split('-')[0];
+			var lat = trails[i].split('-')[1];
+			paths.push([lon,lat]);
+		}  
+		parent.addTrail(paths,0);
+		beforePosition = paths[paths.length-1];
+	});
+    if ("WebSocket" in window){
+	    var d=new Date();
+	    var time = '_'+d.getTime();
+        ws = new WebSocket("ws://60.205.206.180:8080/ResourceMonitor/websocket/"+usercode+time);
+        ws.onopen = function(){
+        };
+        ws.onmessage = function (evt){ 
+           var result = evt.data;
+           var message = result.split(',');
+           moveTo(message,1)
+        };
+        ws.onclose = function(){ 
+        };
+    }
+    moveTo = function(message,move) {
+       var lon = parseFloat(message[0]);
+       var lat = parseFloat(message[1]);
+       var alt = parseFloat(message[2]);
+       var angle = parseFloat(message[3]);
+       var dms = toDMS({x:lon,y:lat});
+/*        $("#lon").html(dms.x);
+       $("#lat").html(dms.y);
+       $("#alt").html(alt.toFixed(0));
+       $("#angle").html((angle/10).toFixed(1)+"°"); */
+       parent.addPosition(lon,lat,move);
+	   parent.addTrail([beforePosition,[lon,lat]],0);	
+       beforePosition=[lon,lat];
+    }	
+});
+function toDMS(lonlat){
+    var longtD = parseInt(lonlat.x);
+    var latD = parseInt(lonlat.y);
+    var longtM = parseInt((lonlat.x - longtD) * 60);
+    var latM = parseInt((lonlat.y - latD) * 60);
+    var longtS = parseFloat(((lonlat.x - longtD) * 60 - longtM) * 60);
+    var latS = parseFloat(((lonlat.y - latD) * 60 - latM) * 60);
+    return{
+    	x:longtD+"°"+longtM+"′"+longtS.toFixed(2)+"″",
+    	y:latD+"°"+latM+"′"+latS.toFixed(2)+"″"
+    }
+}
+</script>
+</body>

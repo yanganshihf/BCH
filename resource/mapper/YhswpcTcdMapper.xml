@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.integration.dao.YhswpcTcdMapper" >
+  <resultMap id="BaseResultMap" type="com.integration.entity.YhswpcTcd" >
+    <result column="UUID_YX" property="uuidYx" jdbcType="VARCHAR" />
+    <result column="UUID_TCD" property="uuidTcd" jdbcType="VARCHAR" />
+    <result column="TCD_BH" property="tcdBh" jdbcType="VARCHAR" />
+    <result column="TCD_MC" property="tcdMc" jdbcType="VARCHAR" />
+    <result column="TCD_JD" property="tcdJd" jdbcType="VARCHAR" />
+    <result column="TCD_WD" property="tcdWd" jdbcType="VARCHAR" />
+    <result column="TCD_HB" property="tcdHb" jdbcType="REAL" />
+    <result column="TCD_SZZC" property="tcdSzzc" jdbcType="VARCHAR" />
+    <result column="YHSW_LB" property="yhswLb" jdbcType="VARCHAR" />
+    <result column="YHSW_MC" property="yhswMc" jdbcType="VARCHAR" />
+    <result column="JZZW_MC" property="jzzwMc" jdbcType="VARCHAR" />
+    <result column="WEIHAI_BW" property="weihaiBw" jdbcType="VARCHAR" />
+    <result column="TCD_SZBZD" property="tcdSzbzd" jdbcType="VARCHAR" />
+    <result column="BZD_BH" property="bzdBh" jdbcType="VARCHAR" />
+    <result column="TCD_BZ" property="tcdBz" jdbcType="VARCHAR" />
+    <result column="LAST_CHANGETIME" property="lastChangetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.integration.entity.YhswpcTcd" >
+    insert into YHSWPC_TCD (UUID_YX, UUID_TCD, TCD_BH, 
+      TCD_MC, TCD_JD, TCD_WD, 
+      TCD_HB, TCD_SZZC, YHSW_LB, 
+      YHSW_MC, JZZW_MC, WEIHAI_BW, 
+      TCD_SZBZD, BZD_BH, TCD_BZ, 
+      LAST_CHANGETIME)
+    values (#{uuidYx,jdbcType=VARCHAR}, #{uuidTcd,jdbcType=VARCHAR}, #{tcdBh,jdbcType=VARCHAR}, 
+      #{tcdMc,jdbcType=VARCHAR}, #{tcdJd,jdbcType=VARCHAR}, #{tcdWd,jdbcType=VARCHAR}, 
+      #{tcdHb,jdbcType=REAL}, #{tcdSzzc,jdbcType=VARCHAR}, #{yhswLb,jdbcType=VARCHAR}, 
+      #{yhswMc,jdbcType=VARCHAR}, #{jzzwMc,jdbcType=VARCHAR}, #{weihaiBw,jdbcType=VARCHAR}, 
+      #{tcdSzbzd,jdbcType=VARCHAR}, #{bzdBh,jdbcType=VARCHAR}, #{tcdBz,jdbcType=VARCHAR}, 
+      #{lastChangetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.integration.entity.YhswpcTcd" >
+    insert into YHSWPC_TCD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuidYx != null" >
+        UUID_YX,
+      </if>
+      <if test="uuidTcd != null" >
+        UUID_TCD,
+      </if>
+      <if test="tcdBh != null" >
+        TCD_BH,
+      </if>
+      <if test="tcdMc != null" >
+        TCD_MC,
+      </if>
+      <if test="tcdJd != null" >
+        TCD_JD,
+      </if>
+      <if test="tcdWd != null" >
+        TCD_WD,
+      </if>
+      <if test="tcdHb != null" >
+        TCD_HB,
+      </if>
+      <if test="tcdSzzc != null" >
+        TCD_SZZC,
+      </if>
+      <if test="yhswLb != null" >
+        YHSW_LB,
+      </if>
+      <if test="yhswMc != null" >
+        YHSW_MC,
+      </if>
+      <if test="jzzwMc != null" >
+        JZZW_MC,
+      </if>
+      <if test="weihaiBw != null" >
+        WEIHAI_BW,
+      </if>
+      <if test="tcdSzbzd != null" >
+        TCD_SZBZD,
+      </if>
+      <if test="bzdBh != null" >
+        BZD_BH,
+      </if>
+      <if test="tcdBz != null" >
+        TCD_BZ,
+      </if>
+      <if test="lastChangetime != null" >
+        LAST_CHANGETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuidYx != null" >
+        #{uuidYx,jdbcType=VARCHAR},
+      </if>
+      <if test="uuidTcd != null" >
+        #{uuidTcd,jdbcType=VARCHAR},
+      </if>
+      <if test="tcdBh != null" >
+        #{tcdBh,jdbcType=VARCHAR},
+      </if>
+      <if test="tcdMc != null" >
+        #{tcdMc,jdbcType=VARCHAR},
+      </if>
+      <if test="tcdJd != null" >
+        #{tcdJd,jdbcType=VARCHAR},
+      </if>
+      <if test="tcdWd != null" >
+        #{tcdWd,jdbcType=VARCHAR},
+      </if>
+      <if test="tcdHb != null" >
+        #{tcdHb,jdbcType=REAL},
+      </if>
+      <if test="tcdSzzc != null" >
+        #{tcdSzzc,jdbcType=VARCHAR},
+      </if>
+      <if test="yhswLb != null" >
+        #{yhswLb,jdbcType=VARCHAR},
+      </if>
+      <if test="yhswMc != null" >
+        #{yhswMc,jdbcType=VARCHAR},
+      </if>
+      <if test="jzzwMc != null" >
+        #{jzzwMc,jdbcType=VARCHAR},
+      </if>
+      <if test="weihaiBw != null" >
+        #{weihaiBw,jdbcType=VARCHAR},
+      </if>
+      <if test="tcdSzbzd != null" >
+        #{tcdSzbzd,jdbcType=VARCHAR},
+      </if>
+      <if test="bzdBh != null" >
+        #{bzdBh,jdbcType=VARCHAR},
+      </if>
+      <if test="tcdBz != null" >
+        #{tcdBz,jdbcType=VARCHAR},
+      </if>
+      <if test="lastChangetime != null" >
+        #{lastChangetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

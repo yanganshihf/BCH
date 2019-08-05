@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.integration.dao.YhswxcFqfhdcbMapper" >
+  <resultMap id="BaseResultMap" type="com.integration.entity.YhswxcFqfhdcb" >
+    <result column="XU_HAO" property="xuHao" jdbcType="INTEGER" />
+    <result column="XIAN" property="xian" jdbcType="VARCHAR" />
+    <result column="XIAN_MC" property="xianMc" jdbcType="VARCHAR" />
+    <result column="XIANG" property="xiang" jdbcType="VARCHAR" />
+    <result column="XIANG_MC" property="xiangMc" jdbcType="VARCHAR" />
+    <result column="CUN" property="cun" jdbcType="VARCHAR" />
+    <result column="XIAO_BAN" property="xiaoBan" jdbcType="VARCHAR" />
+    <result column="YANGDI_H" property="yangdiH" jdbcType="VARCHAR" />
+    <result column="DIDIAN_JD" property="didianJd" jdbcType="VARCHAR" />
+    <result column="DIDIAN_WD" property="didianWd" jdbcType="VARCHAR" />
+    <result column="YHSW_MC" property="yhswMc" jdbcType="VARCHAR" />
+    <result column="ZHUSHU_FQ" property="zhushuFq" jdbcType="INTEGER" />
+    <result column="ZHULV_FQ" property="zhulvFq" jdbcType="INTEGER" />
+    <result column="DCSJ_FQ" property="dcsjFq" jdbcType="DATE" />
+    <result column="ZHUSHU_FH" property="zhushuFh" jdbcType="INTEGER" />
+    <result column="ZHULV_FH" property="zhulvFh" jdbcType="INTEGER" />
+    <result column="DCSJ_FH" property="dcsjFh" jdbcType="DATE" />
+    <result column="BEI_ZHU" property="beiZhu" jdbcType="VARCHAR" />
+    <result column="LAST_CHANGETIME" property="lastChangetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.integration.entity.YhswxcFqfhdcb" >
+    insert into YHSWXC_FQFHDCB (XU_HAO, XIAN, XIAN_MC, 
+      XIANG, XIANG_MC, CUN, 
+      XIAO_BAN, YANGDI_H, DIDIAN_JD, 
+      DIDIAN_WD, YHSW_MC, ZHUSHU_FQ, 
+      ZHULV_FQ, DCSJ_FQ, ZHUSHU_FH, 
+      ZHULV_FH, DCSJ_FH, BEI_ZHU, 
+      LAST_CHANGETIME)
+    values (#{xuHao,jdbcType=INTEGER}, #{xian,jdbcType=VARCHAR}, #{xianMc,jdbcType=VARCHAR}, 
+      #{xiang,jdbcType=VARCHAR}, #{xiangMc,jdbcType=VARCHAR}, #{cun,jdbcType=VARCHAR}, 
+      #{xiaoBan,jdbcType=VARCHAR}, #{yangdiH,jdbcType=VARCHAR}, #{didianJd,jdbcType=VARCHAR}, 
+      #{didianWd,jdbcType=VARCHAR}, #{yhswMc,jdbcType=VARCHAR}, #{zhushuFq,jdbcType=INTEGER}, 
+      #{zhulvFq,jdbcType=INTEGER}, #{dcsjFq,jdbcType=DATE}, #{zhushuFh,jdbcType=INTEGER}, 
+      #{zhulvFh,jdbcType=INTEGER}, #{dcsjFh,jdbcType=DATE}, #{beiZhu,jdbcType=VARCHAR}, 
+      #{lastChangetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.integration.entity.YhswxcFqfhdcb" >
+    insert into YHSWXC_FQFHDCB
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xuHao != null" >
+        XU_HAO,
+      </if>
+      <if test="xian != null" >
+        XIAN,
+      </if>
+      <if test="xianMc != null" >
+        XIAN_MC,
+      </if>
+      <if test="xiang != null" >
+        XIANG,
+      </if>
+      <if test="xiangMc != null" >
+        XIANG_MC,
+      </if>
+      <if test="cun != null" >
+        CUN,
+      </if>
+      <if test="xiaoBan != null" >
+        XIAO_BAN,
+      </if>
+      <if test="yangdiH != null" >
+        YANGDI_H,
+      </if>
+      <if test="didianJd != null" >
+        DIDIAN_JD,
+      </if>
+      <if test="didianWd != null" >
+        DIDIAN_WD,
+      </if>
+      <if test="yhswMc != null" >
+        YHSW_MC,
+      </if>
+      <if test="zhushuFq != null" >
+        ZHUSHU_FQ,
+      </if>
+      <if test="zhulvFq != null" >
+        ZHULV_FQ,
+      </if>
+      <if test="dcsjFq != null" >
+        DCSJ_FQ,
+      </if>
+      <if test="zhushuFh != null" >
+        ZHUSHU_FH,
+      </if>
+      <if test="zhulvFh != null" >
+        ZHULV_FH,
+      </if>
+      <if test="dcsjFh != null" >
+        DCSJ_FH,
+      </if>
+      <if test="beiZhu != null" >
+        BEI_ZHU,
+      </if>
+      <if test="lastChangetime != null" >
+        LAST_CHANGETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xuHao != null" >
+        #{xuHao,jdbcType=INTEGER},
+      </if>
+      <if test="xian != null" >
+        #{xian,jdbcType=VARCHAR},
+      </if>
+      <if test="xianMc != null" >
+        #{xianMc,jdbcType=VARCHAR},
+      </if>
+      <if test="xiang != null" >
+        #{xiang,jdbcType=VARCHAR},
+      </if>
+      <if test="xiangMc != null" >
+        #{xiangMc,jdbcType=VARCHAR},
+      </if>
+      <if test="cun != null" >
+        #{cun,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoBan != null" >
+        #{xiaoBan,jdbcType=VARCHAR},
+      </if>
+      <if test="yangdiH != null" >
+        #{yangdiH,jdbcType=VARCHAR},
+      </if>
+      <if test="didianJd != null" >
+        #{didianJd,jdbcType=VARCHAR},
+      </if>
+      <if test="didianWd != null" >
+        #{didianWd,jdbcType=VARCHAR},
+      </if>
+      <if test="yhswMc != null" >
+        #{yhswMc,jdbcType=VARCHAR},
+      </if>
+      <if test="zhushuFq != null" >
+        #{zhushuFq,jdbcType=INTEGER},
+      </if>
+      <if test="zhulvFq != null" >
+        #{zhulvFq,jdbcType=INTEGER},
+      </if>
+      <if test="dcsjFq != null" >
+        #{dcsjFq,jdbcType=DATE},
+      </if>
+      <if test="zhushuFh != null" >
+        #{zhushuFh,jdbcType=INTEGER},
+      </if>
+      <if test="zhulvFh != null" >
+        #{zhulvFh,jdbcType=INTEGER},
+      </if>
+      <if test="dcsjFh != null" >
+        #{dcsjFh,jdbcType=DATE},
+      </if>
+      <if test="beiZhu != null" >
+        #{beiZhu,jdbcType=VARCHAR},
+      </if>
+      <if test="lastChangetime != null" >
+        #{lastChangetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

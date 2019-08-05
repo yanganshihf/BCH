@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.integration.dao.BinglibushuMapper">
+  <resultMap id="BaseResultMap" type="com.integration.entity.Binglibushu">
+    <id column="Object_ID" jdbcType="NVARCHAR" property="objectId" />
+    <result column="cuntun" jdbcType="NVARCHAR" property="cuntun" />
+    <result column="DAN_WEI" jdbcType="NVARCHAR" property="danWei" />
+    <result column="DUIWU_QK" jdbcType="NVARCHAR" property="duiwuQk" />
+    <result column="DUI_YUAN" jdbcType="INTEGER" property="duiYuan" />
+    <result column="FENGLI_MHJ" jdbcType="INTEGER" property="fengliMhj" />
+    <result column="ERHAO_GJ" jdbcType="INTEGER" property="erhaoGj" />
+    <result column="CHEZAI_TAI" jdbcType="INTEGER" property="chezaiTai" />
+    <result column="DUIJIANG_J" jdbcType="INTEGER" property="duijiangJ" />
+    <result column="YUNBING_C" jdbcType="INTEGER" property="yunbingC" />
+    <result column="ZHIHUI_C" jdbcType="INTEGER" property="zhihuiC" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    Object_ID, cuntun, DAN_WEI, DUIWU_QK, DUI_YUAN, FENGLI_MHJ, ERHAO_GJ, CHEZAI_TAI, 
+    DUIJIANG_J, YUNBING_C, ZHIHUI_C
+  </sql>
+  <select id="selectByExample" parameterType="com.integration.entity.BinglibushuExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from binglibushu
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from binglibushu
+    where Object_ID = #{objectId,jdbcType=NVARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from binglibushu
+    where Object_ID = #{objectId,jdbcType=NVARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.integration.entity.BinglibushuExample">
+    delete from binglibushu
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.integration.entity.Binglibushu">
+    insert into binglibushu (Object_ID, cuntun, DAN_WEI, 
+      DUIWU_QK, DUI_YUAN, FENGLI_MHJ, 
+      ERHAO_GJ, CHEZAI_TAI, DUIJIANG_J, 
+      YUNBING_C, ZHIHUI_C)
+    values (#{objectId,jdbcType=NVARCHAR}, #{cuntun,jdbcType=NVARCHAR}, #{danWei,jdbcType=NVARCHAR}, 
+      #{duiwuQk,jdbcType=NVARCHAR}, #{duiYuan,jdbcType=INTEGER}, #{fengliMhj,jdbcType=INTEGER}, 
+      #{erhaoGj,jdbcType=INTEGER}, #{chezaiTai,jdbcType=INTEGER}, #{duijiangJ,jdbcType=INTEGER}, 
+      #{yunbingC,jdbcType=INTEGER}, #{zhihuiC,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.integration.entity.Binglibushu">
+    insert into binglibushu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="objectId != null">
+        Object_ID,
+      </if>
+      <if test="cuntun != null">
+        cuntun,
+      </if>
+      <if test="danWei != null">
+        DAN_WEI,
+      </if>
+      <if test="duiwuQk != null">
+        DUIWU_QK,
+      </if>
+      <if test="duiYuan != null">
+        DUI_YUAN,
+      </if>
+      <if test="fengliMhj != null">
+        FENGLI_MHJ,
+      </if>
+      <if test="erhaoGj != null">
+        ERHAO_GJ,
+      </if>
+      <if test="chezaiTai != null">
+        CHEZAI_TAI,
+      </if>
+      <if test="duijiangJ != null">
+        DUIJIANG_J,
+      </if>
+      <if test="yunbingC != null">
+        YUNBING_C,
+      </if>
+      <if test="zhihuiC != null">
+        ZHIHUI_C,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="objectId != null">
+        #{objectId,jdbcType=NVARCHAR},
+      </if>
+      <if test="cuntun != null">
+        #{cuntun,jdbcType=NVARCHAR},
+      </if>
+      <if test="danWei != null">
+        #{danWei,jdbcType=NVARCHAR},
+      </if>
+      <if test="duiwuQk != null">
+        #{duiwuQk,jdbcType=NVARCHAR},
+      </if>
+      <if test="duiYuan != null">
+        #{duiYuan,jdbcType=INTEGER},
+      </if>
+      <if test="fengliMhj != null">
+        #{fengliMhj,jdbcType=INTEGER},
+      </if>
+      <if test="erhaoGj != null">
+        #{erhaoGj,jdbcType=INTEGER},
+      </if>
+      <if test="chezaiTai != null">
+        #{chezaiTai,jdbcType=INTEGER},
+      </if>
+      <if test="duijiangJ != null">
+        #{duijiangJ,jdbcType=INTEGER},
+      </if>
+      <if test="yunbingC != null">
+        #{yunbingC,jdbcType=INTEGER},
+      </if>
+      <if test="zhihuiC != null">
+        #{zhihuiC,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.integration.entity.BinglibushuExample" resultType="java.lang.Long">
+    select count(*) from binglibushu
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update binglibushu
+    <set>
+      <if test="record.objectId != null">
+        Object_ID = #{record.objectId,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.cuntun != null">
+        cuntun = #{record.cuntun,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.danWei != null">
+        DAN_WEI = #{record.danWei,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.duiwuQk != null">
+        DUIWU_QK = #{record.duiwuQk,jdbcType=NVARCHAR},
+      </if>
+      <if test="record.duiYuan != null">
+        DUI_YUAN = #{record.duiYuan,jdbcType=INTEGER},
+      </if>
+      <if test="record.fengliMhj != null">
+        FENGLI_MHJ = #{record.fengliMhj,jdbcType=INTEGER},
+      </if>
+      <if test="record.erhaoGj != null">
+        ERHAO_GJ = #{record.erhaoGj,jdbcType=INTEGER},
+      </if>
+      <if test="record.chezaiTai != null">
+        CHEZAI_TAI = #{record.chezaiTai,jdbcType=INTEGER},
+      </if>
+      <if test="record.duijiangJ != null">
+        DUIJIANG_J = #{record.duijiangJ,jdbcType=INTEGER},
+      </if>
+      <if test="record.yunbingC != null">
+        YUNBING_C = #{record.yunbingC,jdbcType=INTEGER},
+      </if>
+      <if test="record.zhihuiC != null">
+        ZHIHUI_C = #{record.zhihuiC,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update binglibushu
+    set Object_ID = #{record.objectId,jdbcType=NVARCHAR},
+      cuntun = #{record.cuntun,jdbcType=NVARCHAR},
+      DAN_WEI = #{record.danWei,jdbcType=NVARCHAR},
+      DUIWU_QK = #{record.duiwuQk,jdbcType=NVARCHAR},
+      DUI_YUAN = #{record.duiYuan,jdbcType=INTEGER},
+      FENGLI_MHJ = #{record.fengliMhj,jdbcType=INTEGER},
+      ERHAO_GJ = #{record.erhaoGj,jdbcType=INTEGER},
+      CHEZAI_TAI = #{record.chezaiTai,jdbcType=INTEGER},
+      DUIJIANG_J = #{record.duijiangJ,jdbcType=INTEGER},
+      YUNBING_C = #{record.yunbingC,jdbcType=INTEGER},
+      ZHIHUI_C = #{record.zhihuiC,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.integration.entity.Binglibushu">
+    update binglibushu
+    <set>
+      <if test="cuntun != null">
+        cuntun = #{cuntun,jdbcType=NVARCHAR},
+      </if>
+      <if test="danWei != null">
+        DAN_WEI = #{danWei,jdbcType=NVARCHAR},
+      </if>
+      <if test="duiwuQk != null">
+        DUIWU_QK = #{duiwuQk,jdbcType=NVARCHAR},
+      </if>
+      <if test="duiYuan != null">
+        DUI_YUAN = #{duiYuan,jdbcType=INTEGER},
+      </if>
+      <if test="fengliMhj != null">
+        FENGLI_MHJ = #{fengliMhj,jdbcType=INTEGER},
+      </if>
+      <if test="erhaoGj != null">
+        ERHAO_GJ = #{erhaoGj,jdbcType=INTEGER},
+      </if>
+      <if test="chezaiTai != null">
+        CHEZAI_TAI = #{chezaiTai,jdbcType=INTEGER},
+      </if>
+      <if test="duijiangJ != null">
+        DUIJIANG_J = #{duijiangJ,jdbcType=INTEGER},
+      </if>
+      <if test="yunbingC != null">
+        YUNBING_C = #{yunbingC,jdbcType=INTEGER},
+      </if>
+      <if test="zhihuiC != null">
+        ZHIHUI_C = #{zhihuiC,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Object_ID = #{objectId,jdbcType=NVARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.integration.entity.Binglibushu">
+    update binglibushu
+    set cuntun = #{cuntun,jdbcType=NVARCHAR},
+      DAN_WEI = #{danWei,jdbcType=NVARCHAR},
+      DUIWU_QK = #{duiwuQk,jdbcType=NVARCHAR},
+      DUI_YUAN = #{duiYuan,jdbcType=INTEGER},
+      FENGLI_MHJ = #{fengliMhj,jdbcType=INTEGER},
+      ERHAO_GJ = #{erhaoGj,jdbcType=INTEGER},
+      CHEZAI_TAI = #{chezaiTai,jdbcType=INTEGER},
+      DUIJIANG_J = #{duijiangJ,jdbcType=INTEGER},
+      YUNBING_C = #{yunbingC,jdbcType=INTEGER},
+      ZHIHUI_C = #{zhihuiC,jdbcType=INTEGER}
+    where Object_ID = #{objectId,jdbcType=NVARCHAR}
+  </update>
+</mapper>

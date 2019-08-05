@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="IE=edge" >
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+<title>rtmpPlayer</title>
+<link rel="stylesheet" href="/ResourceMonitor/js/bootstrap-3.3.5-dist/css/bootstrap.min.css" />
+<style type="text/css">
+html{
+	height:100%;
+}
+body{
+	height:100%;
+	//background-color: #000000;
+	margin:0px;
+}
+.esri-ui-corner .esri-component {
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.3);
+}
+</style>
+<script type="text/javascript" src="/ResourceMonitor/js/moment.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/ResourceMonitor/js/jquery-2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="/ResourceMonitor/js/layer/layer-v3.0.3/layer/layer.js"></script>
+<script type="text/javascript" src="/ResourceMonitor/js/ckplayer/ckplayer/ckplayer.js" charset="UTF-8"></script>
+</head>
+<body>
+<span class="glyphicon glyphicon-picture" onclick="player.screenshot('player',false,'视频截图')" id="screenshotId" style="font-size:20px;display:none;position:absolute;color:#fff;left:500px;padding-right:40px;top:380px;z-index:90;"></span>
+<div  id="playerId" style="width:100%;height:410px;"></div> 
+<div style="width:100%;height:60px;background-repeat:round;background-image:url('/ResourceMonitor/images/hikControl/background.png');">
+	<img src="/ResourceMonitor/images/hikControl/patrol.png" style="margin-left:255px;position:absolute;">
+	<img id="leftBtn" src="/ResourceMonitor/images/hikControl/left.png" style="margin-top:40px;margin-left:265px;position:absolute;">
+	<img id="rightBtn" src="/ResourceMonitor/images/hikControl/right.png" style="margin-top:40px;margin-left:320px;position:absolute;">
+	<img id="upBtn"  src="/ResourceMonitor/images/hikControl/up.png" style="margin-top:12px;margin-left:293px;position:absolute;">
+	<img id="downBtn" src="/ResourceMonitor/images/hikControl/down.png" style="margin-top:68px;margin-left:293px;position:absolute;">
+	<img id="addIrisBtn" src="/ResourceMonitor/images/hikControl/add.png" style="margin-top:10px;margin-left:180px;position:absolute;">
+	<img id="reduceIrisBtn" src="/ResourceMonitor/images/hikControl/reduce.png" style="margin-top:10px;margin-left:90px;position:absolute;">
+	<img id="addFocusBtn" src="/ResourceMonitor/images/hikControl/add.png" style="margin-top:10px;margin-left:465px;position:absolute;">
+	<img id="reduceFocusBtn" src="/ResourceMonitor/images/hikControl/reduce.png" style="margin-top:10px;margin-left:375px;position:absolute;">
+	<img id="patrolBtn" src="/ResourceMonitor/images/hikControl/patrolBtn.png" style="margin-top:30px;margin-left:285px;position:absolute;">
+</div>
+<script>
+var file ='http://60.205.206.180:8088/2019/5/21/UAV1_2019-5-21-15-50-28-rec.flv';
+var videoObject = {
+	container: '#playerId', //容器的ID或className
+	variable: 'player',//播放函数名称
+	autoplay:true,
+	live:true,
+	video: file,
+	loaded: 'loadedHandler',
+};
+var player = new ckplayer(videoObject);
+function loadedHandler() {
+	player.addListener('controlBar', controlBarHandler);
+	player.addListener('screenshot', screenshotHandler); //监听截图功能
+	$("#screenshotId").fadeIn(1000);
+}
+function controlBarHandler(show){
+	if(show) {
+		 $("#screenshotId").fadeIn(1000);
+	} else {
+		$("#screenshotId").fadeOut(1000);
+	}
+}
+function screenshotHandler(obj) {
+  var pictureData = obj['base64'];
+  var downloadElement = document.createElement('a');
+  downloadElement.setAttribute('href', pictureData);
+  var fileName = moment(Date.now()).format("YYYYMMDDHHmmss") + '.png';
+  downloadElement.setAttribute('download', fileName);
+  downloadElement.click();
+  pictureData = null;
+}
+function funControlCamera(action,command){
+	 //LEFT 左转，RIGHT 右转，UP 上转，DOWN 下转，ZOOM_IN 焦距变大，ZOOM_OUT 焦距变小，LEFT_UP 左上 ，LEFT_DOWN 左下，RIGHT_UP 右上，RIGHT_DOWN 右下，FOCUS_FAR焦点后移，IRIS_ENLARGE 光圈扩大，IRIS_REDUCE 光圈缩小，以下命令presetIndex不可为空： GOTO_PRESET到预置点，最大长度：16
+    $.get("/ResourceMonitor/monitorVideo/controlCamera",
+    {
+    	index:"111",
+    	action:action,
+    	command:command
+    },
+        function(data,status){
+        console.log(data);
+    });
+}
+$(function(){
+	$('#leftBtn').on('mousedown',function(){
+		funControlCamera(0,"LEFT");
+	})
+ 	$('#leftBtn').on('mouseup',function(){
+ 		funControlCamera(1,"LEFT");
+	})
+	$('#rightBtn').on('mousedown',function(){
+		funControlCamera(0,"RIGHT");
+	})
+	$('#rightBtn').on('mouseup',function(){
+		funControlCamera(1,"RIGHT");
+	})
+	$('#upBtn').on('mousedown',function(){
+		funControlCamera(0,"UP");
+	})
+	$('#upBtn').on('mouseup',function(){
+		funControlCamera(1,"UP");
+	})
+	$('#downBtn').on('mousedown',function(){
+		funControlCamera(0,"DOWN");
+	})
+	$('#downBtn').on('mouseup',function(){
+		funControlCamera(1,"DOWN");
+	})
+	$('#addIrisBtn').on('mousedown',function(){
+		funControlCamera(0,"IRIS_ENLARGE");
+	})
+	$('#addIrisBtn').on('mouseup',function(){
+		funControlCamera(1,"IRIS_ENLARGE");
+	})
+	$('#reduceIrisBtn').on('mousedown',function(){
+		funControlCamera(0,"IRIS_REDUCE");
+	})
+	$('#reduceIrisBtn').on('mouseup',function(){
+		funControlCamera(1,"IRIS_REDUCE");
+	})
+	$('#addFocusBtn').on('mousedown',function(){
+		funControlCamera(0,"ZOOM_IN");
+	})
+	$('#addFocusBtn').on('mouseup',function(){
+		funControlCamera(1,"ZOOM_IN");
+	})
+	$('#reduceFocusBtn').on('mousedown',function(){
+		funControlCamera(0,"ZOOM_OUT");
+	})
+	$('#reduceFocusBtn').on('mouseup',function(){
+		funControlCamera(0,"ZOOM_OUT");
+	})
+	$('#patrolBtn').on('click',function(){
+		console.log('巡护模式');
+	})	 
+})
+</script>
+</body>

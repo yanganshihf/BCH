@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.integration.dao.YhswpcJyxMapper" >
+  <resultMap id="BaseResultMap" type="com.integration.entity.YhswpcJyx" >
+    <result column="UUID_JYX" property="uuidJyx" jdbcType="VARCHAR" />
+    <result column="SHENG" property="sheng" jdbcType="VARCHAR" />
+    <result column="SHI" property="shi" jdbcType="VARCHAR" />
+    <result column="XIAN" property="xian" jdbcType="VARCHAR" />
+    <result column="XIAN_MC" property="xianMc" jdbcType="VARCHAR" />
+    <result column="XIANG" property="xiang" jdbcType="VARCHAR" />
+    <result column="XIANG_MC" property="xiangMc" jdbcType="VARCHAR" />
+    <result column="XIAO_BAN" property="xiaoBan" jdbcType="VARCHAR" />
+    <result column="LINFEN_LX" property="linfenLx" jdbcType="VARCHAR" />
+    <result column="LINFEN_MJ" property="linfenMj" jdbcType="REAL" />
+    <result column="ZHUYAO_SZ" property="zhuyaoSz" jdbcType="VARCHAR" />
+    <result column="JYX_JD" property="jyxJd" jdbcType="VARCHAR" />
+    <result column="JYX_WD" property="jyxWd" jdbcType="VARCHAR" />
+    <result column="JYX_HB" property="jyxHb" jdbcType="REAL" />
+    <result column="JYX_ZMLY" property="jyxZmly" jdbcType="VARCHAR" />
+    <result column="JYX_YBD" property="jyxYbd" jdbcType="REAL" />
+    <result column="DIAOCHA_RY" property="diaochaRy" jdbcType="VARCHAR" />
+    <result column="DIAOCHA_SJ" property="diaochaSj" jdbcType="DATE" />
+    <result column="LAST_CHANGETIME" property="lastChangetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.integration.entity.YhswpcJyx" >
+    insert into YHSWPC_JYX (UUID_JYX, SHENG, SHI, 
+      XIAN, XIAN_MC, XIANG, 
+      XIANG_MC, XIAO_BAN, LINFEN_LX, 
+      LINFEN_MJ, ZHUYAO_SZ, JYX_JD, 
+      JYX_WD, JYX_HB, JYX_ZMLY, 
+      JYX_YBD, DIAOCHA_RY, DIAOCHA_SJ, 
+      LAST_CHANGETIME)
+    values (#{uuidJyx,jdbcType=VARCHAR}, #{sheng,jdbcType=VARCHAR}, #{shi,jdbcType=VARCHAR}, 
+      #{xian,jdbcType=VARCHAR}, #{xianMc,jdbcType=VARCHAR}, #{xiang,jdbcType=VARCHAR}, 
+      #{xiangMc,jdbcType=VARCHAR}, #{xiaoBan,jdbcType=VARCHAR}, #{linfenLx,jdbcType=VARCHAR}, 
+      #{linfenMj,jdbcType=REAL}, #{zhuyaoSz,jdbcType=VARCHAR}, #{jyxJd,jdbcType=VARCHAR}, 
+      #{jyxWd,jdbcType=VARCHAR}, #{jyxHb,jdbcType=REAL}, #{jyxZmly,jdbcType=VARCHAR}, 
+      #{jyxYbd,jdbcType=REAL}, #{diaochaRy,jdbcType=VARCHAR}, #{diaochaSj,jdbcType=DATE}, 
+      #{lastChangetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.integration.entity.YhswpcJyx" >
+    insert into YHSWPC_JYX
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuidJyx != null" >
+        UUID_JYX,
+      </if>
+      <if test="sheng != null" >
+        SHENG,
+      </if>
+      <if test="shi != null" >
+        SHI,
+      </if>
+      <if test="xian != null" >
+        XIAN,
+      </if>
+      <if test="xianMc != null" >
+        XIAN_MC,
+      </if>
+      <if test="xiang != null" >
+        XIANG,
+      </if>
+      <if test="xiangMc != null" >
+        XIANG_MC,
+      </if>
+      <if test="xiaoBan != null" >
+        XIAO_BAN,
+      </if>
+      <if test="linfenLx != null" >
+        LINFEN_LX,
+      </if>
+      <if test="linfenMj != null" >
+        LINFEN_MJ,
+      </if>
+      <if test="zhuyaoSz != null" >
+        ZHUYAO_SZ,
+      </if>
+      <if test="jyxJd != null" >
+        JYX_JD,
+      </if>
+      <if test="jyxWd != null" >
+        JYX_WD,
+      </if>
+      <if test="jyxHb != null" >
+        JYX_HB,
+      </if>
+      <if test="jyxZmly != null" >
+        JYX_ZMLY,
+      </if>
+      <if test="jyxYbd != null" >
+        JYX_YBD,
+      </if>
+      <if test="diaochaRy != null" >
+        DIAOCHA_RY,
+      </if>
+      <if test="diaochaSj != null" >
+        DIAOCHA_SJ,
+      </if>
+      <if test="lastChangetime != null" >
+        LAST_CHANGETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuidJyx != null" >
+        #{uuidJyx,jdbcType=VARCHAR},
+      </if>
+      <if test="sheng != null" >
+        #{sheng,jdbcType=VARCHAR},
+      </if>
+      <if test="shi != null" >
+        #{shi,jdbcType=VARCHAR},
+      </if>
+      <if test="xian != null" >
+        #{xian,jdbcType=VARCHAR},
+      </if>
+      <if test="xianMc != null" >
+        #{xianMc,jdbcType=VARCHAR},
+      </if>
+      <if test="xiang != null" >
+        #{xiang,jdbcType=VARCHAR},
+      </if>
+      <if test="xiangMc != null" >
+        #{xiangMc,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoBan != null" >
+        #{xiaoBan,jdbcType=VARCHAR},
+      </if>
+      <if test="linfenLx != null" >
+        #{linfenLx,jdbcType=VARCHAR},
+      </if>
+      <if test="linfenMj != null" >
+        #{linfenMj,jdbcType=REAL},
+      </if>
+      <if test="zhuyaoSz != null" >
+        #{zhuyaoSz,jdbcType=VARCHAR},
+      </if>
+      <if test="jyxJd != null" >
+        #{jyxJd,jdbcType=VARCHAR},
+      </if>
+      <if test="jyxWd != null" >
+        #{jyxWd,jdbcType=VARCHAR},
+      </if>
+      <if test="jyxHb != null" >
+        #{jyxHb,jdbcType=REAL},
+      </if>
+      <if test="jyxZmly != null" >
+        #{jyxZmly,jdbcType=VARCHAR},
+      </if>
+      <if test="jyxYbd != null" >
+        #{jyxYbd,jdbcType=REAL},
+      </if>
+      <if test="diaochaRy != null" >
+        #{diaochaRy,jdbcType=VARCHAR},
+      </if>
+      <if test="diaochaSj != null" >
+        #{diaochaSj,jdbcType=DATE},
+      </if>
+      <if test="lastChangetime != null" >
+        #{lastChangetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

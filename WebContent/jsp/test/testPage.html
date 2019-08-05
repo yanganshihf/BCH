@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript"
+	src="/ResourceMonitor/js/jquery-2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+	<button onclick="del()">删除</button>
+	<button onclick="querylist()">条件查询</button>
+	<button onclick="findById()">单条详情</button>
+	<button onclick="update()">修改</button>
+	
+	<input type="number" id='InputMumber'>
+	<div id="res"></div>
+</body>
+<script>
+	function del() {
+		$.ajax({
+			url : "http://localhost:8081/ResourceMonitor/jyx/delete", //请求的url地址
+			dataType : "json", //返回格式为json
+			async : true, //请求是否异步，默认为异步，这也是ajax重要特性
+			data : {
+				"uuid_jyx" : "aaa"
+			}, //参数值
+			type : "POST", //请求方式
+			success : function(req) {
+
+			}
+		});
+	}
+	
+	function querylist() {
+		$.ajax({
+			url : "http://localhost:8081/ResourceMonitor/bhfqhz/queryList", //请求的url地址
+			dataType : "json", //返回格式为json
+			async : true, //请求是否异步，默认为异步，这也是ajax重要特性
+			data : {
+				"page" : 1,
+				"rows" : 30,
+				shi : "",
+				xian : "",
+				xiang : "",
+				yangdi_h : "",
+				shouhai_zl : 25,
+				ganbing_zs : $("#InputMumber").val() // 空参时传入input的值即可
+			}, //参数值
+			type : "POST", //请求方式
+			success : function(req) {
+				//请求成功时处理
+			}
+		});
+	}
+
+	function findById() {
+		$.ajax({
+			url : "http://localhost:8081/ResourceMonitor/czddc/findById", //请求的url地址
+			dataType : "json", //返回格式为json
+			async : true, //请求是否异步，默认为异步，这也是ajax重要特性
+			data : {
+				"uuid_czd" : "37d562f2-fbd7-49b0-8203-7d3311e40cc7"
+			}, //参数值
+			type : "POST", //请求方式
+			success : function(req) {
+				//请求成功时处理
+			}
+		});
+	}
+
+	function update() {
+		$.ajax({
+			url : "http://localhost:8081/ResourceMonitor/czddc/updateZB", //请求的url地址
+			dataType : "json", //返回格式为json
+			async : true, //请求是否异步，默认为异步，这也是ajax重要特性
+			data : {
+				uuid : "698e7e85-abba-44bc",
+				uuid_czd : "",
+				yangdi_h : "",
+				diaocha_zs : 1123,
+				yhsw_lb : "",
+				yhsw_mc : "",
+				jzzw_mc : "",
+				weihai_bw : "",
+				weihai_q : "",
+				shouhai_zl : 3212,
+				siwang_zl : 424212,
+				chengzai : ""
+			}, //参数值
+			type : "POST", //请求方式
+			success : function(req) {
+			}
+		});
+	}
+</script>
+
+</html>

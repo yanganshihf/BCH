@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.integration.dao.ChonghiaMapper">
+  <resultMap id="BaseResultMap" type="com.integration.entity.Chonghia">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="LADING_M" jdbcType="VARCHAR" property="ladingM" />
+    <result column="JI_BIE" jdbcType="VARCHAR" property="jiBie" />
+    <result column="JZZW_MC" jdbcType="VARCHAR" property="jzzwMc" />
+    <result column="JIAN_YI" jdbcType="VARCHAR" property="jianYi" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    ID, name, code, LADING_M, JI_BIE, JZZW_MC, JIAN_YI
+  </sql>
+  <select id="selectByExample" parameterType="com.integration.entity.ChonghiaExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from CHONGHIA
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from CHONGHIA
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from CHONGHIA
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.integration.entity.ChonghiaExample">
+    delete from CHONGHIA
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.integration.entity.Chonghia">
+    insert into CHONGHIA (ID, name, code, 
+      LADING_M, JI_BIE, JZZW_MC, 
+      JIAN_YI)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{ladingM,jdbcType=VARCHAR}, #{jiBie,jdbcType=VARCHAR}, #{jzzwMc,jdbcType=VARCHAR}, 
+      #{jianYi,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.integration.entity.Chonghia">
+    insert into CHONGHIA
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="ladingM != null">
+        LADING_M,
+      </if>
+      <if test="jiBie != null">
+        JI_BIE,
+      </if>
+      <if test="jzzwMc != null">
+        JZZW_MC,
+      </if>
+      <if test="jianYi != null">
+        JIAN_YI,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="ladingM != null">
+        #{ladingM,jdbcType=VARCHAR},
+      </if>
+      <if test="jiBie != null">
+        #{jiBie,jdbcType=VARCHAR},
+      </if>
+      <if test="jzzwMc != null">
+        #{jzzwMc,jdbcType=VARCHAR},
+      </if>
+      <if test="jianYi != null">
+        #{jianYi,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.integration.entity.ChonghiaExample" resultType="java.lang.Long">
+    select count(*) from CHONGHIA
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update CHONGHIA
+    <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ladingM != null">
+        LADING_M = #{record.ladingM,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jiBie != null">
+        JI_BIE = #{record.jiBie,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jzzwMc != null">
+        JZZW_MC = #{record.jzzwMc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jianYi != null">
+        JIAN_YI = #{record.jianYi,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update CHONGHIA
+    set ID = #{record.id,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      LADING_M = #{record.ladingM,jdbcType=VARCHAR},
+      JI_BIE = #{record.jiBie,jdbcType=VARCHAR},
+      JZZW_MC = #{record.jzzwMc,jdbcType=VARCHAR},
+      JIAN_YI = #{record.jianYi,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.integration.entity.Chonghia">
+    update CHONGHIA
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="ladingM != null">
+        LADING_M = #{ladingM,jdbcType=VARCHAR},
+      </if>
+      <if test="jiBie != null">
+        JI_BIE = #{jiBie,jdbcType=VARCHAR},
+      </if>
+      <if test="jzzwMc != null">
+        JZZW_MC = #{jzzwMc,jdbcType=VARCHAR},
+      </if>
+      <if test="jianYi != null">
+        JIAN_YI = #{jianYi,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.integration.entity.Chonghia">
+    update CHONGHIA
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      LADING_M = #{ladingM,jdbcType=VARCHAR},
+      JI_BIE = #{jiBie,jdbcType=VARCHAR},
+      JZZW_MC = #{jzzwMc,jdbcType=VARCHAR},
+      JIAN_YI = #{jianYi,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

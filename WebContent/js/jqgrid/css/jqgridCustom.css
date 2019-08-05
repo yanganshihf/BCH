@@ -1,0 +1,5 @@
+#indexTable td{border-top:1px solid #e5e5e5}
+#indexTable input{height:17px;width:90%}
+select{height:20px;width:90%;font-size:12px;text-align:center}
+.detailMessage{background:none;border:0;color:#038be9}
+button{cursor:pointer}

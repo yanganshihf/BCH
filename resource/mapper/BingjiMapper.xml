@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.integration.dao.BingjiMapper" >
+  <resultMap id="BaseResultMap" type="com.integration.entity.Bingji" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="YHSW_MC" property="yhswMc" jdbcType="VARCHAR" />
+    <result column="DAIBIAOZHI" property="daibiaozhi" jdbcType="VARCHAR" />
+    <result column="BING_QING" property="bingQing" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.integration.entity.Bingji" >
+    insert into BINGJI (ID, name, code, 
+      YHSW_MC, DAIBIAOZHI, BING_QING
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{yhswMc,jdbcType=VARCHAR}, #{daibiaozhi,jdbcType=VARCHAR}, #{bingQing,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.integration.entity.Bingji" >
+    insert into BINGJI
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="yhswMc != null" >
+        YHSW_MC,
+      </if>
+      <if test="daibiaozhi != null" >
+        DAIBIAOZHI,
+      </if>
+      <if test="bingQing != null" >
+        BING_QING,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="yhswMc != null" >
+        #{yhswMc,jdbcType=VARCHAR},
+      </if>
+      <if test="daibiaozhi != null" >
+        #{daibiaozhi,jdbcType=VARCHAR},
+      </if>
+      <if test="bingQing != null" >
+        #{bingQing,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <sql id="Base_Column_List">
+    ID, name, code, YHSW_MC, DAIBIAOZHI, BING_QING
+  </sql>
+  <select id="getAllReturnMap" resultType="com.integration.entity.Bingji">
+    select
+     <include refid="Base_Column_List" />
+     from BINGJI
+  </select>
+</mapper>

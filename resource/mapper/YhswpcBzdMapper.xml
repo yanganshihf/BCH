@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.integration.dao.YhswpcBzdMapper" >
+  <resultMap id="BaseResultMap" type="com.integration.entity.YhswpcBzd" >
+    <result column="UUID_YX" property="uuidYx" jdbcType="VARCHAR" />
+    <result column="UUID_TCD" property="uuidTcd" jdbcType="VARCHAR" />
+    <result column="UUID_BZD" property="uuidBzd" jdbcType="VARCHAR" />
+    <result column="BZD_BH" property="bzdBh" jdbcType="VARCHAR" />
+    <result column="BZD_XB" property="bzdXb" jdbcType="VARCHAR" />
+    <result column="BZD_LFLX" property="bzdLflx" jdbcType="VARCHAR" />
+    <result column="BZD_LFMJ" property="bzdLfmj" jdbcType="REAL" />
+    <result column="BZD_ZYSZ" property="bzdZysz" jdbcType="VARCHAR" />
+    <result column="BZD_JD" property="bzdJd" jdbcType="VARCHAR" />
+    <result column="BZD_WD" property="bzdWd" jdbcType="VARCHAR" />
+    <result column="BZD_HB" property="bzdHb" jdbcType="REAL" />
+    <result column="BZD_ZMLY" property="bzdZmly" jdbcType="VARCHAR" />
+    <result column="BZD_ZBLX" property="bzdZblx" jdbcType="VARCHAR" />
+    <result column="BZD_PJSG" property="bzdPjsg" jdbcType="REAL" />
+    <result column="YHSW_MC" property="yhswMc" jdbcType="VARCHAR" />
+    <result column="BZD_YBD" property="bzdYbd" jdbcType="REAL" />
+    <result column="BZD_JZSZNL" property="bzdJzsznl" jdbcType="INTEGER" />
+    <result column="BZD_LMZC" property="bzdLmzc" jdbcType="VARCHAR" />
+    <result column="BZD_BZ" property="bzdBz" jdbcType="VARCHAR" />
+    <result column="LAST_CHANGETIME" property="lastChangetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.integration.entity.YhswpcBzd" >
+    insert into YHSWPC_BZD (UUID_YX, UUID_TCD, UUID_BZD, 
+      BZD_BH, BZD_XB, BZD_LFLX, 
+      BZD_LFMJ, BZD_ZYSZ, BZD_JD, 
+      BZD_WD, BZD_HB, BZD_ZMLY, 
+      BZD_ZBLX, BZD_PJSG, YHSW_MC, 
+      BZD_YBD, BZD_JZSZNL, BZD_LMZC, 
+      BZD_BZ, LAST_CHANGETIME)
+    values (#{uuidYx,jdbcType=VARCHAR}, #{uuidTcd,jdbcType=VARCHAR}, #{uuidBzd,jdbcType=VARCHAR}, 
+      #{bzdBh,jdbcType=VARCHAR}, #{bzdXb,jdbcType=VARCHAR}, #{bzdLflx,jdbcType=VARCHAR}, 
+      #{bzdLfmj,jdbcType=REAL}, #{bzdZysz,jdbcType=VARCHAR}, #{bzdJd,jdbcType=VARCHAR}, 
+      #{bzdWd,jdbcType=VARCHAR}, #{bzdHb,jdbcType=REAL}, #{bzdZmly,jdbcType=VARCHAR}, 
+      #{bzdZblx,jdbcType=VARCHAR}, #{bzdPjsg,jdbcType=REAL}, #{yhswMc,jdbcType=VARCHAR}, 
+      #{bzdYbd,jdbcType=REAL}, #{bzdJzsznl,jdbcType=INTEGER}, #{bzdLmzc,jdbcType=VARCHAR}, 
+      #{bzdBz,jdbcType=VARCHAR}, #{lastChangetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.integration.entity.YhswpcBzd" >
+    insert into YHSWPC_BZD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuidYx != null" >
+        UUID_YX,
+      </if>
+      <if test="uuidTcd != null" >
+        UUID_TCD,
+      </if>
+      <if test="uuidBzd != null" >
+        UUID_BZD,
+      </if>
+      <if test="bzdBh != null" >
+        BZD_BH,
+      </if>
+      <if test="bzdXb != null" >
+        BZD_XB,
+      </if>
+      <if test="bzdLflx != null" >
+        BZD_LFLX,
+      </if>
+      <if test="bzdLfmj != null" >
+        BZD_LFMJ,
+      </if>
+      <if test="bzdZysz != null" >
+        BZD_ZYSZ,
+      </if>
+      <if test="bzdJd != null" >
+        BZD_JD,
+      </if>
+      <if test="bzdWd != null" >
+        BZD_WD,
+      </if>
+      <if test="bzdHb != null" >
+        BZD_HB,
+      </if>
+      <if test="bzdZmly != null" >
+        BZD_ZMLY,
+      </if>
+      <if test="bzdZblx != null" >
+        BZD_ZBLX,
+      </if>
+      <if test="bzdPjsg != null" >
+        BZD_PJSG,
+      </if>
+      <if test="yhswMc != null" >
+        YHSW_MC,
+      </if>
+      <if test="bzdYbd != null" >
+        BZD_YBD,
+      </if>
+      <if test="bzdJzsznl != null" >
+        BZD_JZSZNL,
+      </if>
+      <if test="bzdLmzc != null" >
+        BZD_LMZC,
+      </if>
+      <if test="bzdBz != null" >
+        BZD_BZ,
+      </if>
+      <if test="lastChangetime != null" >
+        LAST_CHANGETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuidYx != null" >
+        #{uuidYx,jdbcType=VARCHAR},
+      </if>
+      <if test="uuidTcd != null" >
+        #{uuidTcd,jdbcType=VARCHAR},
+      </if>
+      <if test="uuidBzd != null" >
+        #{uuidBzd,jdbcType=VARCHAR},
+      </if>
+      <if test="bzdBh != null" >
+        #{bzdBh,jdbcType=VARCHAR},
+      </if>
+      <if test="bzdXb != null" >
+        #{bzdXb,jdbcType=VARCHAR},
+      </if>
+      <if test="bzdLflx != null" >
+        #{bzdLflx,jdbcType=VARCHAR},
+      </if>
+      <if test="bzdLfmj != null" >
+        #{bzdLfmj,jdbcType=REAL},
+      </if>
+      <if test="bzdZysz != null" >
+        #{bzdZysz,jdbcType=VARCHAR},
+      </if>
+      <if test="bzdJd != null" >
+        #{bzdJd,jdbcType=VARCHAR},
+      </if>
+      <if test="bzdWd != null" >
+        #{bzdWd,jdbcType=VARCHAR},
+      </if>
+      <if test="bzdHb != null" >
+        #{bzdHb,jdbcType=REAL},
+      </if>
+      <if test="bzdZmly != null" >
+        #{bzdZmly,jdbcType=VARCHAR},
+      </if>
+      <if test="bzdZblx != null" >
+        #{bzdZblx,jdbcType=VARCHAR},
+      </if>
+      <if test="bzdPjsg != null" >
+        #{bzdPjsg,jdbcType=REAL},
+      </if>
+      <if test="yhswMc != null" >
+        #{yhswMc,jdbcType=VARCHAR},
+      </if>
+      <if test="bzdYbd != null" >
+        #{bzdYbd,jdbcType=REAL},
+      </if>
+      <if test="bzdJzsznl != null" >
+        #{bzdJzsznl,jdbcType=INTEGER},
+      </if>
+      <if test="bzdLmzc != null" >
+        #{bzdLmzc,jdbcType=VARCHAR},
+      </if>
+      <if test="bzdBz != null" >
+        #{bzdBz,jdbcType=VARCHAR},
+      </if>
+      <if test="lastChangetime != null" >
+        #{lastChangetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

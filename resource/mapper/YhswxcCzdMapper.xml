@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.integration.dao.YhswxcCzdMapper" >
+  <resultMap id="BaseResultMap" type="com.integration.entity.YhswxcCzd" >
+    <result column="UUID_CZD" property="uuidCzd" jdbcType="VARCHAR" />
+    <result column="DIAOCHA_SJ" property="diaochaSj" jdbcType="DATE" />
+    <result column="SHENG" property="sheng" jdbcType="VARCHAR" />
+    <result column="SHI" property="shi" jdbcType="VARCHAR" />
+    <result column="XIAN" property="xian" jdbcType="VARCHAR" />
+    <result column="XIAN_MC" property="xianMc" jdbcType="VARCHAR" />
+    <result column="XIANG" property="xiang" jdbcType="VARCHAR" />
+    <result column="XIANG_MC" property="xiangMc" jdbcType="VARCHAR" />
+    <result column="CUN" property="cun" jdbcType="VARCHAR" />
+    <result column="XIAO_BAN" property="xiaoBan" jdbcType="VARCHAR" />
+    <result column="YANGDI_H" property="yangdiH" jdbcType="VARCHAR" />
+    <result column="DIAOCHA_RY" property="diaochaRy" jdbcType="VARCHAR" />
+    <result column="LAST_CHANGETIME" property="lastChangetime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.integration.entity.YhswxcCzd" >
+    insert into YHSWXC_CZD (UUID_CZD, DIAOCHA_SJ, SHENG, 
+      SHI, XIAN, XIAN_MC, 
+      XIANG, XIANG_MC, CUN, 
+      XIAO_BAN, YANGDI_H, DIAOCHA_RY, 
+      LAST_CHANGETIME)
+    values (#{uuidCzd,jdbcType=VARCHAR}, #{diaochaSj,jdbcType=DATE}, #{sheng,jdbcType=VARCHAR}, 
+      #{shi,jdbcType=VARCHAR}, #{xian,jdbcType=VARCHAR}, #{xianMc,jdbcType=VARCHAR}, 
+      #{xiang,jdbcType=VARCHAR}, #{xiangMc,jdbcType=VARCHAR}, #{cun,jdbcType=VARCHAR}, 
+      #{xiaoBan,jdbcType=VARCHAR}, #{yangdiH,jdbcType=VARCHAR}, #{diaochaRy,jdbcType=VARCHAR}, 
+      #{lastChangetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.integration.entity.YhswxcCzd" >
+    insert into YHSWXC_CZD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuidCzd != null" >
+        UUID_CZD,
+      </if>
+      <if test="diaochaSj != null" >
+        DIAOCHA_SJ,
+      </if>
+      <if test="sheng != null" >
+        SHENG,
+      </if>
+      <if test="shi != null" >
+        SHI,
+      </if>
+      <if test="xian != null" >
+        XIAN,
+      </if>
+      <if test="xianMc != null" >
+        XIAN_MC,
+      </if>
+      <if test="xiang != null" >
+        XIANG,
+      </if>
+      <if test="xiangMc != null" >
+        XIANG_MC,
+      </if>
+      <if test="cun != null" >
+        CUN,
+      </if>
+      <if test="xiaoBan != null" >
+        XIAO_BAN,
+      </if>
+      <if test="yangdiH != null" >
+        YANGDI_H,
+      </if>
+      <if test="diaochaRy != null" >
+        DIAOCHA_RY,
+      </if>
+      <if test="lastChangetime != null" >
+        LAST_CHANGETIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuidCzd != null" >
+        #{uuidCzd,jdbcType=VARCHAR},
+      </if>
+      <if test="diaochaSj != null" >
+        #{diaochaSj,jdbcType=DATE},
+      </if>
+      <if test="sheng != null" >
+        #{sheng,jdbcType=VARCHAR},
+      </if>
+      <if test="shi != null" >
+        #{shi,jdbcType=VARCHAR},
+      </if>
+      <if test="xian != null" >
+        #{xian,jdbcType=VARCHAR},
+      </if>
+      <if test="xianMc != null" >
+        #{xianMc,jdbcType=VARCHAR},
+      </if>
+      <if test="xiang != null" >
+        #{xiang,jdbcType=VARCHAR},
+      </if>
+      <if test="xiangMc != null" >
+        #{xiangMc,jdbcType=VARCHAR},
+      </if>
+      <if test="cun != null" >
+        #{cun,jdbcType=VARCHAR},
+      </if>
+      <if test="xiaoBan != null" >
+        #{xiaoBan,jdbcType=VARCHAR},
+      </if>
+      <if test="yangdiH != null" >
+        #{yangdiH,jdbcType=VARCHAR},
+      </if>
+      <if test="diaochaRy != null" >
+        #{diaochaRy,jdbcType=VARCHAR},
+      </if>
+      <if test="lastChangetime != null" >
+        #{lastChangetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

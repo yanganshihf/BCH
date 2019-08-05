@@ -1,0 +1,169 @@
+@CHARSET "UTF-8";
+#panorama{
+	position: absolute;
+	top:0;
+	left:0;
+	background: rgba(255,255,255,.7);
+	z-index:9999;
+}
+#backInfo{
+	position:absolute;
+	top:10px;
+	left:10px;
+	width:300px;
+	height:35px;
+	display: -webkit-inline-box;
+	z-index:9999;
+	color:#ccc;
+    line-height:30px;
+}
+#back{
+	width:60px;
+	height:30px;
+	background: rgba(19, 18, 18, 0.62);
+    border-radius: 3px;
+    margin-right:5px;
+    padding-left:10px;
+    cursor: pointer;
+}
+#back i{
+	font-size: 14px;
+}
+#Info{
+	width:230px;
+	height:30px;
+	background: rgba(19, 18, 18, 0.62);
+    border-radius: 3px;
+    padding-left:15px;
+}
+#album{
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:100%;
+	height:90px;
+	display: -webkit-inline-box;
+	background: rgba(19, 18, 18, 0.62);
+	z-index:9999;
+	padding: 10px;
+	padding-left:30px;
+	padding-right:30px;
+}
+.panDiv{
+	width: 100%;
+    overflow-x: scroll;
+    margin-bottom: -30px;
+}
+.panUl{
+	width: 100%;
+	display: flex;
+}
+.panUl li{
+	height: 90px;
+    width: 150px;
+    margin-left: 10px;
+    position: relative;
+    border: 1px #1e3653c9 solid;
+    color: #cccccc;
+}
+.panUl li:hover{
+    border: 1px #346fbb solid;
+    color: #fff;
+}
+.panUl li img {
+	height: 90px;
+    width: 150px;
+    margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+.panUl li .select{
+	position: absolute;
+    left: 0;
+    top: 0;
+    width: 144px;
+    height: 84px;
+    border: 3px solid #87c5fb;
+}
+#nextP,#lastP{
+	width: 30px;
+	color: #fff;
+    z-index: 9999;
+    height: 110px;
+    line-height: 110px;
+    text-align: center;
+    cursor: pointer; 
+}
+#nextP{
+	position: absolute;
+	bottom: 0;
+    right: 0;
+}
+#lastP{
+	position: absolute;
+	bottom: 0;
+    left: 0;
+    color:#5c544a;
+}
+.photo-item{
+	left: 0;
+    top: 0;
+    z-index: 4;
+    zoom: 1;
+    cursor: pointer;
+    height: 100%;
+}
+
+.photo-desc{
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    padding-top: 20px;
+    line-height:20px;
+    font-size: 12px;
+    
+}
+.photo-desc i{
+	margin-left:10px;
+}
+.photo-desc span{
+	display:inline-block;
+	width:80%;
+}
+#controls {
+    position: absolute;
+    z-index: 99999;
+    text-align: center;
+    padding-bottom: 3px;
+    right: 15px;
+    bottom: 132px;
+        
+    }
+.ctrl {
+    padding: 8px 5px;
+    width: 25px;
+    text-align: center;
+    background: rgba(52, 46, 44, 0.7);
+    cursor: pointer;
+    margin-bottom: 10px;
+    color:#ccc;
+}
+ .ctrl:hover{
+      background: rgba(200, 200, 200, 1);
+      color:#000;
+}
+#hide{
+	position: absolute;
+    bottom: 105px;
+    right: 20px;
+    background: rgba(19, 18, 18,.62);
+    z-index: 9999;
+    color: #b3b6ba;
+    height: 35px;
+    transform: rotate(90deg);
+    width: 25px;
+    text-align: center;
+    line-height: 35px;
+}
